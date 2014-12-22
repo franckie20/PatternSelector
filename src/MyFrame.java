@@ -23,7 +23,6 @@ public class MyFrame extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel picture;
-	private SelectorController sc;
 	
 	public MyFrame() {
 			
@@ -36,7 +35,7 @@ public class MyFrame extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		
 		String[] array = { "Bird", "Pig" };
-		JComboBox patternList = new JComboBox(array);
+		JComboBox<String> patternList = new JComboBox<String>(array);
 		patternList.setSelectedIndex(1);
 		patternList.addActionListener(this);
 		contentPane.add(patternList);
@@ -61,7 +60,7 @@ public class MyFrame extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		JComboBox cb = (JComboBox)e.getSource();
+		JComboBox<?> cb = (JComboBox<?>)e.getSource();
 		String patternName = (String)cb.getSelectedItem();
 		updateLabel(patternName);
 	}
