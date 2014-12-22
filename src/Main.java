@@ -1,6 +1,6 @@
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -11,7 +11,7 @@ public class Main {
 		BufferedImage img = null;
 		
 		try {
-			img = ImageIO.read(new File("C:/Users/FranckV/Dropbox/Assignment 2/images/factory.jpg"));
+			img = ImageIO.read(new URL("http://www.dofactory.com/net/factory-method-design-pattern"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
