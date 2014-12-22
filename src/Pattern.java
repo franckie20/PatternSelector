@@ -65,5 +65,11 @@ public class Pattern {
 	public void setConsequence(String consequence) {
 		this.consequence = consequence;
 	}
+	
+	public String toString() {
+		String s = name + " " + context + " " + problem + " " + solution + " " + consequence;
+		return s;
+		
+	}
 
 }
