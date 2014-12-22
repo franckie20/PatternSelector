@@ -1,13 +1,13 @@
 
-public class Purpose {
-	private String Description;
+public class Purpose  {
+	private String Type;
 
-	public String getDescription() {
-		return Description;
+	public String getType() {
+		return Type;
 	}
 
-	public void setDescription(String description) {
-		Description = description;
+	public void setType(String type) {
+		Type = type;
 	}
 	
 	public void purpose(){

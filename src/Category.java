@@ -1,14 +1,20 @@
 
 public class Category {
 	
-	private String name;
-
-	public String getName() {
-		return name;
+	private String Description;
+	
+	public Category(String De) {
+		De = Description;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getDescription() {
+		return Description;
 	}
+
+	public void setDescription(String description) {
+		Description = description;
+	}
+
+
 
 }

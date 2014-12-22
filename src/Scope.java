@@ -1,12 +1,12 @@
 
 public class Scope {
-	private String Description;
+	private String Type;
 
-	public String getDescription() {
-		return Description;
+	public String getType() {
+		return Type;
 	}
 
-	public void setDescription(String description) {
-		Description = description;
+	public void setType(String type) {
+		Type = type;
 	}
 }
