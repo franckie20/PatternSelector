@@ -17,8 +17,7 @@ public class Main {
 		}
 		
 		Pattern p1 = new Pattern("Factory Method", "test2", "test3", "test4", "test5", img);
-		
-		
+
 		System.out.println(p1);
 	}
 }
