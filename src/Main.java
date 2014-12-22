@@ -1,12 +1,16 @@
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 public class Main {
 
 	public static void main(String[] args ) {
+		
+		ArrayList<Pattern> allPatterns;
+		allPatterns = new ArrayList<Pattern>();
 		
 		BufferedImage img = null;
 		
@@ -17,7 +21,10 @@ public class Main {
 		}
 		
 		Pattern p1 = new Pattern("Factory Method", "test2", "test3", "test4", "test5", img);
+		allPatterns.add(p1);
 
-		System.out.println(p1);
+		for(Pattern p : allPatterns) {
+			System.out.println(p);
+		}
 	}
 }
