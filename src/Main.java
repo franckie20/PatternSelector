@@ -1,8 +1,11 @@
 
 public class Main {
+	
+	public static void main(String[] args) {
 
-	private String naam;
-	private String consequence;
-	private String poep;
+		
+		MyFrame mf = new MyFrame();
+	
+	}
 
 }
