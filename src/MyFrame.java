@@ -59,8 +59,9 @@ public class MyFrame extends JFrame implements ActionListener {
 		
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public void actionPerformed(ActionEvent e) {
-		JComboBox<?> cb = (JComboBox<?>)e.getSource();
+		JComboBox cb = (JComboBox)e.getSource();
 		String patternName = (String)cb.getSelectedItem();
 		updateLabel(patternName);
 	}
