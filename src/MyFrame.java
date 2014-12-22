@@ -23,6 +23,7 @@ public class MyFrame extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel picture;
+	private SelectorController sc;
 	
 	public MyFrame() {
 			
@@ -34,7 +35,7 @@ public class MyFrame extends JFrame implements ActionListener {
 		contentPane.setLayout(new BorderLayout(0, 0));		
 		setContentPane(contentPane);
 		
-		String[] array = {"Pig", "Bird"};
+		Pattern[] array = sc.getAllPatterns().toArray(new Pattern[0]);
 		JComboBox patternList = new JComboBox(array);
 		patternList.setSelectedIndex(1);
 		patternList.addActionListener(this);
@@ -65,10 +66,10 @@ public class MyFrame extends JFrame implements ActionListener {
 		updateLabel(patternName);
 	}
 	
-	protected void updateLabel(String name) {
-        ImageIcon icon = createImageIcon("images/" + name.toLowerCase() + ".gif");
+	protected void updateLabel(Pattern array) {
+        ImageIcon icon = createImageIcon("images/" + array.toLowerCase() + ".gif");
         picture.setIcon(icon);
-        picture.setToolTipText("The " + name.toLowerCase() + " pattern");
+        picture.setToolTipText("The " + array.toLowerCase() + " pattern");
         if (icon != null) {
             picture.setText(null);
         } else {
