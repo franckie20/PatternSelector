@@ -22,9 +22,7 @@ public class Main {
 		BufferedImage img = null;
 
 		try {
-			img = ImageIO
-					.read(new URL(
-							"http://www.dofactory.com/images/diagrams/net/factory.gif"));
+			img = ImageIO.read(new URL("http://www.dofactory.com/images/diagrams/net/factory.gif"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
