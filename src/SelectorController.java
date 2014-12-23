@@ -13,6 +13,7 @@ public class SelectorController {
 	}
 	
 	private ArrayList<Pattern> allPatterns = new ArrayList<Pattern>();
+	private ArrayList<Purpose> allPurposes = new ArrayList<Purpose>();
 	
 	public String[] getAllPatternsBySearchName(String t) {
 		String[] array = new String[allPatterns.size()];
@@ -47,6 +48,28 @@ public class SelectorController {
 
 	public int countedPatterns() {
 		return allPatterns.size();
+	}
+	
+	public String[] getAllPurposesByName() {
+		String[] array = new String[allPurposes.size()];
+		int counter = 0;
+		for(Purpose p : allPurposes) {
+			array[counter] = p.getType();
+			counter++;
+		}
+		return array;
+	}
+	
+	public void addPurpose(Purpose nwePurpose) {
+		allPurposes.add(nwePurpose);
+	}
+
+	public void removePurpose(Purpose exPurpose) {
+		allPurposes.remove(exPurpose);
+	}
+
+	public int countedPurposes() {
+		return allPurposes.size();
 	}
 
 }

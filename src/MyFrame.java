@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,6 +50,13 @@ public class MyFrame extends JFrame implements ActionListener {
 		patternList.addActionListener(this);
 		contentPane.add(patternList);
 		
+		String[] listPurposes = control.getAllPurposesByName();
+		JComboBox<String> purposeList = new JComboBox<String>(listPurposes);
+		
+		purposeList.setSelectedIndex(0);
+		purposeList.addActionListener(purposeAction);
+		contentPane.add(purposeList);
+		
 		//Set up the picture.
         picture = new JLabel();
         picture.setFont(picture.getFont().deriveFont(Font.ITALIC));
@@ -63,6 +71,7 @@ public class MyFrame extends JFrame implements ActionListener {
  
         //Lay out the demo.
         add(patternList, BorderLayout.PAGE_START);
+        add(purposeList, BorderLayout.LINE_START);
         add(picture, BorderLayout.PAGE_END);
         picture.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));		
 	}
@@ -81,6 +90,15 @@ public class MyFrame extends JFrame implements ActionListener {
 		String patternName = (String)cb.getSelectedItem();
 		updateLabel(patternName);
 	}
+	
+	ActionListener purposeAction = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+		}
+		
+	};
 	
 	
 	protected void updateLabel(String name) {

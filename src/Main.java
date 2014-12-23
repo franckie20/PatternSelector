@@ -36,9 +36,11 @@ public class Main {
 		sc.addPattern(p4);
 		
 		p1.setPurpose(ps1);
-		p2.setPurpose(ps1);
-		p3.setPurpose(ps1);
-		p4.setPurpose(ps1);
+		//p2.setPurpose(ps2);
+		//p3.setPurpose(ps3);
+		//p4.setPurpose(ps4);
+		
+		sc.addPurpose(ps1);
 		
 		p1.setScope(s1);
 		p2.setScope(s1);
