@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -55,8 +56,7 @@ public class MyFrame extends JFrame implements ActionListener {
         //Lay out the demo.
         add(patternList, BorderLayout.PAGE_START);
         add(picture, BorderLayout.PAGE_END);
-        picture.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-		
+        picture.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));		
 	}
 	
 	@SuppressWarnings("rawtypes")
