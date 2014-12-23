@@ -38,13 +38,13 @@ public class SelectorController {
 	}
 	
 	public String[] getAllPatternContexts() {
-		String[] array = new String[allPatterns.size()];
-		int counter = 0;
+		String[] context = new String[allPatterns.size()];
+		int count = 0;
 		for(Pattern p : allPatterns) {
-			array[counter] = p.getContext() + p.getName();
-			counter++;
+			context[count] = p.getContext();
+			count++;
 		}
-		return array;
+		return context;
 	}
 	
 	public ArrayList<Pattern> getAllPatterns() {
