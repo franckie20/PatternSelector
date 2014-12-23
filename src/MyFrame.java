@@ -42,8 +42,8 @@ public class MyFrame extends JFrame implements ActionListener {
 		contentPane.setLayout(new BorderLayout(0, 0));		
 		setContentPane(contentPane);
 		
-		String[] array = control.getAllPatternsByName();
-		JComboBox<String> patternList = new JComboBox<String>(array);
+		String[] listPatterns = control.getAllPatternsByName();
+		JComboBox<String> patternList = new JComboBox<String>(listPatterns);
 		
 		patternList.setSelectedIndex(1);
 		patternList.addActionListener(this);
@@ -53,7 +53,7 @@ public class MyFrame extends JFrame implements ActionListener {
         picture = new JLabel();
         picture.setFont(picture.getFont().deriveFont(Font.ITALIC));
         picture.setHorizontalAlignment(JLabel.CENTER);
-        updateLabel(array[patternList.getSelectedIndex()]);
+        updateLabel(listPatterns[patternList.getSelectedIndex()]);
         picture.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
  
         //The preferred size is hard-coded to be the width of the
@@ -81,6 +81,7 @@ public class MyFrame extends JFrame implements ActionListener {
 		String patternName = (String)cb.getSelectedItem();
 		updateLabel(patternName);
 	}
+	
 	
 	protected void updateLabel(String name) {
         ImageIcon icon = createImageIcon("images/" + name.toLowerCase() + ".gif");
