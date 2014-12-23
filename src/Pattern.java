@@ -77,7 +77,7 @@ public class Pattern {
 	}
 	
 	public String toString() {
-		String s = name + " " + context + " " + problem + " " + solution + " " + consequence + " " + getPurpose().getType() ;
+		String s = "" + name + " " + "- " + context + " - " + problem + " - " + solution + " - " + consequence + " - " + hasPurpose ;
 		return s;
 		
 	}
