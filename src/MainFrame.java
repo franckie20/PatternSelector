@@ -6,6 +6,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.CardLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.RowSpec;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 public class MainFrame extends JFrame implements ActionListener {
 
@@ -24,19 +33,19 @@ public class MainFrame extends JFrame implements ActionListener {
 	public void createGUI() {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 300, 300);
+		setBounds(100, 100, 300, 80);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new GridLayout(2, 2, 5, 5));
 		setContentPane(contentPane);
-
-		selector = new JButton("Selector");
-		selector.addActionListener(selectorAction);
-		contentPane.add(selector);
 		
 		editor = new JButton("Editor");
 		editor.addActionListener(editorAction);
+		
+		selector = new JButton("Selector");
+		selector.addActionListener(selectorAction);
+		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		contentPane.add(selector);
 		contentPane.add(editor);
 	}
 
