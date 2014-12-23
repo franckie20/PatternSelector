@@ -57,7 +57,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		String[] listContexts = control.getAllPatternContexts();
 		JComboBox<String> contextList = new JComboBox<String>(listContexts);
 
-		contextList.setSelectedIndex(0);
+		contextList.setSelectedIndex(2);
 		contextList.addActionListener(contextAction);
 		contentPanel.add(contextList);
 
@@ -76,7 +76,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		// Lay out the demo.
 
 		add(l1, BorderLayout.BEFORE_LINE_BEGINS);
-		//add(l2, BorderLayout.LINE_END);
+		add(l2, BorderLayout.LINE_END);
 		add(contextList, BorderLayout.PAGE_START);
 		add(picture, BorderLayout.PAGE_END);
 		picture.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
