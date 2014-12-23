@@ -1,12 +1,16 @@
-
 public class Scope {
-	private String Type;
 
-	public String getType() {
-		return Type;
+	private String type;
+
+	public Scope(String typ) {
+		type = typ;
 	}
 
-	public void setType(String type) {
-		Type = type;
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String typ) {
+		type = typ;
 	}
 }

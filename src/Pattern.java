@@ -8,6 +8,8 @@ public class Pattern {
 	private String solution;
 	private String consequence;
 	private Image diagram;
+	
+	private Purpose hasPurpose;
 
 	public Pattern(String nm, String con, String pro, String sol, String conseq, Image dia) {
 		name = nm;
@@ -16,6 +18,14 @@ public class Pattern {
 		solution = sol;
 		consequence = conseq;
 		diagram = dia;
+	}
+	
+	public Purpose getPurpose() {
+		return hasPurpose;
+	}
+	
+	public void setPurpose(Purpose p) {
+		hasPurpose = p;
 	}
 
 	public String getName() {
@@ -67,7 +77,7 @@ public class Pattern {
 	}
 	
 	public String toString() {
-		String s = name + " " + context + " " + problem + " " + solution + " " + consequence;
+		String s = name + " " + context + " " + problem + " " + solution + " " + consequence + " " + getPurpose().getType() ;
 		return s;
 		
 	}
