@@ -37,6 +37,16 @@ public class SelectorController {
 		return array;
 	}
 	
+	public String[] getAllPatternContexts() {
+		String[] array = new String[allPatterns.size()];
+		int counter = 0;
+		for(Pattern p : allPatterns) {
+			array[counter] = p.getContext();
+			counter++;
+		}
+		return array;
+	}
+	
 	
 	public void addPattern(Pattern nwePattern) {
 		allPatterns.add(nwePattern);

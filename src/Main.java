@@ -25,7 +25,7 @@ public class Main {
 		Scope s1 = new Scope("Class");
 		//Scope s2 = new Scope("Object");
 		
-		Pattern p1 = new Pattern("Factory", "test2", "test3", "test4", "test5", img);
+		Pattern p1 = new Pattern("Factory", "Creating objects without specifying the exact class of object that will be created", "test3", "test4", "test5", img);
 		Pattern p2 = new Pattern("Adapter", "test2", "test3", "test4", "test5", img);
 		Pattern p3 = new Pattern("Interpreter", "test2", "test3", "test4", "test5", img);
 		Pattern p4 = new Pattern("Template", "test2", "test3", "test4", "test5", img);
@@ -52,7 +52,7 @@ public class Main {
 		System.out.println(p3);
 		System.out.println(p4);
 
-		new MyFrame(sc);
+		new SelectorFrame(sc);
 		
 	}		
 }
