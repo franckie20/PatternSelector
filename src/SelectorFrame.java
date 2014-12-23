@@ -55,17 +55,17 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		//contentPanel.add(patternList);
 
 		String[] listContexts = control.getAllPatternContexts();
-		JComboBox<String> contextList = new JComboBox<String>(listContexts);
+		//JComboBox<String> contextList = new JComboBox<String>(listContexts);
 
-		contextList.setSelectedIndex(2);
-		contextList.addActionListener(contextAction);
-		contentPanel.add(contextList);
+		//contextList.setSelectedIndex(2);
+		//contextList.addActionListener(contextAction);
+		//contentPanel.add(contextList);
 
 		// Set up the picture.
 		picture = new JLabel();
 		picture.setFont(picture.getFont().deriveFont(Font.ITALIC));
 		picture.setHorizontalAlignment(JLabel.CENTER);
-		updateLabel(listContexts[contextList.getSelectedIndex()]);
+		//updateLabel(listContexts[contextList.getSelectedIndex()]);
 		picture.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 
 		// The preferred size is hard-coded to be the width of the
@@ -77,7 +77,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 
 		add(l1, BorderLayout.BEFORE_LINE_BEGINS);
 		add(l2, BorderLayout.LINE_END);
-		add(contextList, BorderLayout.PAGE_START);
+		//add(contextList, BorderLayout.PAGE_START);
 		add(picture, BorderLayout.PAGE_END);
 		picture.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 	}

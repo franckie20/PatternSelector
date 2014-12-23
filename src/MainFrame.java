@@ -23,6 +23,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	public void createGUI() {
 		setVisible(true);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 80);
 
