@@ -21,6 +21,8 @@ public class EditorFrame extends JFrame implements ActionListener {
 	private JButton addPattern, removePattern;
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons;
 	private SelectorController control;
+
+	@SuppressWarnings("rawtypes")
 	private JComboBox box;
 
 	public EditorFrame(SelectorController sc) {
@@ -29,6 +31,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		createGUI();
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createGUI() {
 
 		Font f = new Font("SansSerif", Font.BOLD, 12);
@@ -144,10 +147,10 @@ public class EditorFrame extends JFrame implements ActionListener {
 				control.removePattern(selected);
 				box.repaint();
 				this.dispose();
-			}
-			else {
-				JOptionPane.showMessageDialog(null, "Pattern couldn't be removed!",
-						"Error", JOptionPane.PLAIN_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"Pattern couldn't be removed!", "Error",
+						JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 
