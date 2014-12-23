@@ -52,7 +52,7 @@ public class Main {
 		System.out.println(p3);
 		System.out.println(p4);
 
-		new SelectorFrame(sc);
+		new MainFrame(sc);
 		
 	}		
 }
