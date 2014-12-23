@@ -1,4 +1,3 @@
-import java.awt.EventQueue;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -6,19 +5,11 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 public class Main {
-
+	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MyFrame mf = new MyFrame();
-					mf.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 
+		SelectorController sc = SelectorController.getInstance();
+		
 		BufferedImage img = null;
 
 		try {
@@ -34,10 +25,15 @@ public class Main {
 		Scope s1 = new Scope("Class");
 		//Scope s2 = new Scope("Object");
 		
-		Pattern p1 = new Pattern("Factory Method", "test2", "test3", "test4", "test5", img);
-		Pattern p2 = new Pattern("Adapter (Class)", "test2", "test3", "test4", "test5", img);
+		Pattern p1 = new Pattern("Factory", "test2", "test3", "test4", "test5", img);
+		Pattern p2 = new Pattern("Adapter", "test2", "test3", "test4", "test5", img);
 		Pattern p3 = new Pattern("Interpreter", "test2", "test3", "test4", "test5", img);
-		Pattern p4 = new Pattern("Template Method", "test2", "test3", "test4", "test5", img);
+		Pattern p4 = new Pattern("Template", "test2", "test3", "test4", "test5", img);
+		
+		sc.addPattern(p1);
+		sc.addPattern(p2);
+		sc.addPattern(p3);
+		sc.addPattern(p4);
 		
 		p1.setPurpose(ps1);
 		p2.setPurpose(ps1);
@@ -54,5 +50,7 @@ public class Main {
 		System.out.println(p3);
 		System.out.println(p4);
 
-	}
+		new MyFrame(sc);
+		
+	}		
 }

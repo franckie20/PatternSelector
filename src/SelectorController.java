@@ -3,6 +3,14 @@ import java.util.ArrayList;
 
 public class SelectorController {
 	
+	private static SelectorController instance = null;
+	
+	public static synchronized SelectorController getInstance(){
+		if (instance == null){
+			instance = new SelectorController();
+		}
+		return instance;
+	}
 	
 	private ArrayList<Pattern> allPatterns = new ArrayList<Pattern>();
 	
@@ -18,9 +26,16 @@ public class SelectorController {
 		return array;
 	}
 	
-	public String[] getAllPatterns() {
-		return (String[]) allPatterns.toArray();
+	public String[] getAllPatternsByName() {
+		String[] array = new String[allPatterns.size()];
+		int counter = 0;
+		for(Pattern p : allPatterns) {
+			array[counter] = p.getName();
+			counter++;
+		}
+		return array;
 	}
+	
 	
 	public void addPattern(Pattern nwePattern) {
 		allPatterns.add(nwePattern);

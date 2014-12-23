@@ -21,21 +21,30 @@ import javax.swing.border.EmptyBorder;
 public class MyFrame extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private JLabel picture;
+	private SelectorController control;
 	
-	public MyFrame() {
-			
-		setTitle("Pattern Application");
+	public MyFrame(SelectorController sc) {
+		super("Pattern Application");
+		control = sc;
+		createGUI();
+	}
+	
+	public void createGUI() {
+		
+		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));		
 		setContentPane(contentPane);
 		
-		String[] array = { "Bird", "Pig"};
+		String[] array = control.getAllPatternsByName();
 		JComboBox<String> patternList = new JComboBox<String>(array);
+		
 		patternList.setSelectedIndex(1);
 		patternList.addActionListener(this);
 		contentPane.add(patternList);
@@ -50,12 +59,20 @@ public class MyFrame extends JFrame implements ActionListener {
         //The preferred size is hard-coded to be the width of the
         //widest image and the height of the tallest image + the border.
         //A real program would compute this.
-        picture.setPreferredSize(new Dimension(150, 188+10));
+        picture.setPreferredSize(new Dimension(220, 188+10));
  
         //Lay out the demo.
         add(patternList, BorderLayout.PAGE_START);
         add(picture, BorderLayout.PAGE_END);
         picture.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));		
+	}
+	
+	public SelectorController getSelectorController() {
+		return control;
+	}
+	
+	public void setControl(SelectorController sc) {
+		control = sc;
 	}
 	
 	@SuppressWarnings("rawtypes")
