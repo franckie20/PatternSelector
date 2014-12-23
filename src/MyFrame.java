@@ -36,7 +36,7 @@ public class MyFrame extends JFrame implements ActionListener {
 		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 300);
+		setBounds(100, 100, 600, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));		
@@ -59,7 +59,7 @@ public class MyFrame extends JFrame implements ActionListener {
         //The preferred size is hard-coded to be the width of the
         //widest image and the height of the tallest image + the border.
         //A real program would compute this.
-        picture.setPreferredSize(new Dimension(220, 188+10));
+        picture.setPreferredSize(new Dimension(315, 320+10));
  
         //Lay out the demo.
         add(patternList, BorderLayout.PAGE_START);
