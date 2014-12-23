@@ -59,8 +59,7 @@ public class SelectorController {
 			}
 		}
 		return b;
-	}
-	
+	}	
 	
 	public boolean addPattern(Pattern nwePattern) {
 		if(!patternExists(nwePattern.getName())) {
@@ -71,7 +70,9 @@ public class SelectorController {
 	}
 
 	public void removePattern(Pattern exPattern) {
-		allPatterns.remove(exPattern);
+		if(patternExists(exPattern.getName())) {
+			allPatterns.remove(exPattern);
+		}
 	}
 
 	public int countedPatterns() {

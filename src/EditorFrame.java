@@ -143,6 +143,11 @@ public class EditorFrame extends JFrame implements ActionListener {
 						"Succes", JOptionPane.PLAIN_MESSAGE);
 				control.removePattern(selected);
 				box.repaint();
+				this.dispose();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Pattern couldn't be removed!",
+						"Error", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 

@@ -101,14 +101,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 			@SuppressWarnings("rawtypes")
 			JComboBox cb = (JComboBox) e.getSource();
 			String patternName = (String)cb.getSelectedItem();
-			
-			Object obj = cb.getSelectedItem();
-			if (obj instanceof Pattern) {
-				Pattern p = (Pattern)obj;
-				l1.setText(p.getContext());
-				updateLabel(patternName);
-			}
-			
+			updateLabel(patternName);
 		}
 	};
 
