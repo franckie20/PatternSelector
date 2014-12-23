@@ -41,7 +41,7 @@ public class SelectorController {
 		String[] array = new String[allPatterns.size()];
 		int counter = 0;
 		for(Pattern p : allPatterns) {
-			array[counter] = p.getContext();
+			array[counter] = p.getContext() + p.getName();
 			counter++;
 		}
 		return array;

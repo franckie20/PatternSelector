@@ -47,25 +47,25 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		l2 = new JLabel("Pattern: ");
 		contentPanel.add(l2);
 
-		String[] listPatterns = control.getAllPatternsByName();
-		JComboBox<String> patternList = new JComboBox<String>(listPatterns);
+		//String[] listPatterns = control.getAllPatternsByName();
+		//JComboBox<String> patternList = new JComboBox<String>(listPatterns);
 
-		patternList.setSelectedIndex(1);
-		patternList.addActionListener(contextAction);
-		contentPanel.add(patternList);
+		//patternList.setSelectedIndex(1);
+		//patternList.addActionListener(contextAction);
+		//contentPanel.add(patternList);
 
-		//String[] listContexts = control.getAllPatternContexts();
-		//JComboBox<String> contextList = new JComboBox<String>(listContexts);
+		String[] listContexts = control.getAllPatternContexts();
+		JComboBox<String> contextList = new JComboBox<String>(listContexts);
 
-		//contextList.setSelectedIndex(0);
-		//contextList.addActionListener(contextAction);
-		//contentPanel.add(contextList);
+		contextList.setSelectedIndex(0);
+		contextList.addActionListener(contextAction);
+		contentPanel.add(contextList);
 
 		// Set up the picture.
 		picture = new JLabel();
 		picture.setFont(picture.getFont().deriveFont(Font.ITALIC));
 		picture.setHorizontalAlignment(JLabel.CENTER);
-		updateLabel(listPatterns[patternList.getSelectedIndex()]);
+		updateLabel(listContexts[contextList.getSelectedIndex()]);
 		picture.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 
 		// The preferred size is hard-coded to be the width of the
@@ -77,7 +77,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 
 		add(l1, BorderLayout.BEFORE_LINE_BEGINS);
 		//add(l2, BorderLayout.LINE_END);
-		add(patternList, BorderLayout.PAGE_START);
+		add(contextList, BorderLayout.PAGE_START);
 		add(picture, BorderLayout.PAGE_END);
 		picture.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 	}
