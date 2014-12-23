@@ -12,7 +12,6 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,7 +34,7 @@ public class MyFrame extends JFrame implements ActionListener {
 		contentPane.setLayout(new BorderLayout(0, 0));		
 		setContentPane(contentPane);
 		
-		String[] array = { "Bird", "Pig" };
+		String[] array = { "Bird", "Pig"};
 		JComboBox<String> patternList = new JComboBox<String>(array);
 		patternList.setSelectedIndex(1);
 		patternList.addActionListener(this);

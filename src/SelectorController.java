@@ -18,8 +18,8 @@ public class SelectorController {
 		return array;
 	}
 	
-	public ArrayList<Pattern> getAllPatterns() {
-		return allPatterns;
+	public String[] getAllPatterns() {
+		return (String[]) allPatterns.toArray();
 	}
 	
 	public void addPattern(Pattern nwePattern) {
