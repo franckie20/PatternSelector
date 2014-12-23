@@ -11,10 +11,10 @@ public class FTPConnectAndLoginDemo {
         }
     }
     public static void main(String[] args) {
-        String server = "www.yourserver.net";
+        String server = "ftp.franckie20.com";
         int port = 21;
-        String user = "username";
-        String pass = "password";
+        String user = "francba140";
+        String pass = "gczre4fs";
         FTPClient ftpClient = new FTPClient();
         try {
             ftpClient.connect(server, port);
