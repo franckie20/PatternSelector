@@ -47,9 +47,27 @@ public class SelectorController {
 		return array;
 	}
 	
+	public ArrayList<Pattern> getAllPatterns() {
+		return allPatterns;
+	}
 	
-	public void addPattern(Pattern nwePattern) {
-		allPatterns.add(nwePattern);
+	public boolean patternExists(String pat) {
+		boolean b = false;
+		for (Pattern p : allPatterns) {
+			if (p.getName().equals(pat)) {
+				b = true;
+			}
+		}
+		return b;
+	}
+	
+	
+	public boolean addPattern(Pattern nwePattern) {
+		if(!patternExists(nwePattern.getName())) {
+			allPatterns.add(nwePattern);
+			return true;
+		}
+		return false;
 	}
 
 	public void removePattern(Pattern exPattern) {
