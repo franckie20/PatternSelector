@@ -13,4 +13,9 @@ public class Scope {
 	public void setType(String typ) {
 		type = typ;
 	}
+	
+	public String toString() {
+		String s = type;
+		return s;
+	}
 }

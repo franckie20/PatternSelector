@@ -10,6 +10,7 @@ public class Pattern {
 	private Image diagram;
 	
 	private Purpose hasPurpose;
+	private Scope hasScope;
 
 	public Pattern(String nm, String con, String pro, String sol, String conseq, Image dia) {
 		name = nm;
@@ -26,6 +27,14 @@ public class Pattern {
 	
 	public void setPurpose(Purpose p) {
 		hasPurpose = p;
+	}
+	
+	public Scope getScope() {
+		return hasScope;
+	}
+	
+	public void setScope(Scope s) {
+		hasScope = s;
 	}
 
 	public String getName() {
@@ -77,7 +86,7 @@ public class Pattern {
 	}
 	
 	public String toString() {
-		String s = "" + name + " " + "- " + context + " - " + problem + " - " + solution + " - " + consequence + " - " + hasPurpose ;
+		String s = "" + name + " " + "- " + context + " - " + problem + " - " + solution + " - " + consequence + " - " + hasPurpose + " - " + hasScope;
 		return s;
 		
 	}

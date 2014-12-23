@@ -28,8 +28,11 @@ public class Main {
 		}
 
 		Purpose ps1 = new Purpose("Creational");
-		Purpose ps2 = new Purpose("Structural");
-		Purpose ps3 = new Purpose("Behavorial");
+		//Purpose ps2 = new Purpose("Structural");
+		//Purpose ps3 = new Purpose("Behavorial");
+		
+		Scope s1 = new Scope("Class");
+		//Scope s2 = new Scope("Object");
 		
 		Pattern p1 = new Pattern("Factory Method", "test2", "test3", "test4", "test5", img);
 		Pattern p2 = new Pattern("Adapter (Class)", "test2", "test3", "test4", "test5", img);
@@ -41,9 +44,10 @@ public class Main {
 		p3.setPurpose(ps1);
 		p4.setPurpose(ps1);
 		
-		
-		Scope s1 = new Scope("Class");
-		Scope s2 = new Scope("Object");
+		p1.setScope(s1);
+		p2.setScope(s1);
+		p3.setScope(s1);
+		p4.setScope(s1);
 
 		System.out.println(p1);
 		System.out.println(p2);
