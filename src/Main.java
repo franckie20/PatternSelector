@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 public class Main {
 	
 	public static void main(String[] args) {
-
 		
 		SelectorController sc = SelectorController.getInstance();
 		
