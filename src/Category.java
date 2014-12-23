@@ -4,7 +4,7 @@ public class Category {
 	private String Description;
 
 	public Category(String De) {
-		De = Description;
+		Description = De;
 	}
 
 	public String getDescription() {
