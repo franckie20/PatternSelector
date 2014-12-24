@@ -3,6 +3,10 @@ import java.util.ArrayList;
 
 public class SelectorController {
 	
+	
+	private ArrayList<Pattern> allPatterns = new ArrayList<Pattern>();
+	private ArrayList<Purpose> allPurposes = new ArrayList<Purpose>();
+	
 	private static SelectorController instance = null;
 	
 	public static synchronized SelectorController getInstance(){
@@ -11,9 +15,7 @@ public class SelectorController {
 		}
 		return instance;
 	}
-	
-	private ArrayList<Pattern> allPatterns = new ArrayList<Pattern>();
-	private ArrayList<Purpose> allPurposes = new ArrayList<Purpose>();
+
 	
 	public String[] getAllPatternsBySearchName(String t) {
 		String[] array = new String[allPatterns.size()];

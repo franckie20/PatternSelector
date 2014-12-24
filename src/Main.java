@@ -19,16 +19,17 @@ public class Main {
 		}
 
 		Purpose ps1 = new Purpose("Creational");
-		//Purpose ps2 = new Purpose("Structural");
-		//Purpose ps3 = new Purpose("Behavorial");
+		Purpose ps2 = new Purpose("Structural");
+		Purpose ps3 = new Purpose("Behavorial");
+
 		
 		Scope s1 = new Scope("Class");
-		//Scope s2 = new Scope("Object");
+		Scope s2 = new Scope("Object");
 		
 		Pattern p1 = new Pattern("Factory", "Creating objects without specifying the exact class of object that will be created", "test3", "test4", "test5", img);
-		Pattern p2 = new Pattern("Adapter", "test2", "test3", "test4", "test5", img);
-		Pattern p3 = new Pattern("Interpreter", "test2", "test3", "test4", "test5", img);
-		Pattern p4 = new Pattern("Template", "test2", "test3", "test4", "test5", img);
+		Pattern p2 = new Pattern("Adapter", "allows the interface of an existing class to be used from another interface", "test3", "test4", "test5", img);
+		Pattern p3 = new Pattern("Interpreter", "specifies how to evaluate sentences in a language", "test3", "test4", "test5", img);
+		Pattern p4 = new Pattern("Template", "defines the program skeleton of an algorithm in a method", "test3", "test4", "test5", img);
 		
 		sc.addPattern(p1);
 		sc.addPattern(p2);
@@ -36,9 +37,9 @@ public class Main {
 		sc.addPattern(p4);
 		
 		p1.setPurpose(ps1);
-		//p2.setPurpose(ps2);
-		//p3.setPurpose(ps3);
-		//p4.setPurpose(ps4);
+		p2.setPurpose(ps2);
+		p3.setPurpose(ps3);
+
 		
 		sc.addPurpose(ps1);
 		
