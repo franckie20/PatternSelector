@@ -101,7 +101,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		addPattern = new JButton("Add pattern");
 		ps.add(addPattern);
 		addPattern.addActionListener(this);
-		
+
 		editPattern = new JButton("Save pattern");
 		ps.add(editPattern);
 		editPattern.addActionListener(editPatternAL);
@@ -176,12 +176,15 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 				newP = new Pattern(nm, con, prob, sol, cons, null);
 				if (control.addPattern(newP)) {
-					JOptionPane.showMessageDialog(null, "Adding succesfull!", "Succes", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Adding succesfull!",
+							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
 				}
 
 				else {
-					JOptionPane.showMessageDialog(null, "Denied, pattern already exists!", "Error", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							"Denied, pattern already exists!", "Error",
+							JOptionPane.PLAIN_MESSAGE);
 					tfNm.setText("");
 					tfCon.setText("");
 					tfProb.setText("");
@@ -189,11 +192,12 @@ public class EditorFrame extends JFrame implements ActionListener {
 					tfCons.setText("");
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Adding failed", "OK", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Adding failed", "OK",
+						JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 	}
-	
+
 	ActionListener editPatternAL = new ActionListener() {
 
 		@Override
@@ -203,24 +207,28 @@ public class EditorFrame extends JFrame implements ActionListener {
 			String prob = tfProb.getText();
 			String sol = tfSol.getText();
 			String cons = tfCons.getText();
-			
+
 			Object selectedPattern = box.getSelectedItem();
 			if (selectedPattern instanceof Pattern) {
-				if (!nm.equals("") && !con.equals("") && !prob.equals("") && !sol.equals("") && !cons.equals("")) {
-					Pattern selected = (Pattern) selectedPattern;
+				Pattern selected = (Pattern) selectedPattern;
+				if (!nm.equals("") && !con.equals("") && !prob.equals("")
+						&& !sol.equals("") && !cons.equals("")) {
+
 					selected.setName(nm);
 					selected.setConsequence(con);
 					selected.setProblem(prob);
 					selected.setSolution(sol);
 					selected.setConsequence(cons);
-					JOptionPane.showMessageDialog(null, "Pattern saved", "OK", JOptionPane.PLAIN_MESSAGE);
-					
+					JOptionPane.showMessageDialog(null, "Pattern saved", "OK",
+							JOptionPane.PLAIN_MESSAGE);
+
 				} else {
-					JOptionPane.showMessageDialog(null, "Saving failed", "OK", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Saving failed", "OK",
+							JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 		}
-		
+
 	};
 
 	public SelectorController getControl() {
@@ -231,28 +239,27 @@ public class EditorFrame extends JFrame implements ActionListener {
 		this.control = control;
 	}
 
-	
-	//Action on frame close, wegschrijven naar file???????????????????????????
+	// Action on frame close, wegschrijven naar file???????????????????????????
 	public void windowClosed(WindowEvent wE) {
 		FileWriter fw = null;
-        File file = null;
-        try {
-            file = new File("All-Patterns.txt");
-            if(!file.exists()) {
-                file.createNewFile();
-            }
-            fw = new FileWriter(file);
-            fw.write("");
-            fw.flush();
-            fw.close();
-            System.out.println("File written Succesfully");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		File file = null;
+		try {
+			file = new File("All-Patterns.txt");
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			fw = new FileWriter(file);
+			fw.write("");
+			fw.flush();
+			fw.close();
+			System.out.println("File written Succesfully");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void windowOpen() {
 		onSelectedItemChanged();
 	}
-	
+
 }
