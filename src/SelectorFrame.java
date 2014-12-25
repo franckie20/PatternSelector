@@ -1,38 +1,29 @@
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 public class SelectorFrame extends JFrame implements ActionListener {
 
-	//private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 	//private JPanel contentPanel;
+	@SuppressWarnings("unused")
 	private JLabel picture, l1,l2, l3, l4, l5, l6, l8;
 	private SelectorController control;
+	@SuppressWarnings({ "rawtypes", "unused" })
 	private JComboBox box1, box2, box3, box4, box5, box6;
 
 
+	@SuppressWarnings("rawtypes")
 	public SelectorFrame(SelectorController sc) {
 		super("Pattern Application");
 		control = sc;

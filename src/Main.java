@@ -25,7 +25,7 @@ public class Main {
 
 		
 		Scope s1 = new Scope("Class");
-		Scope s2 = new Scope("Object");
+		//Scope s2 = new Scope("Object");
 		
 		Pattern p1 = new Pattern("Factory", "Creating objects without specifying the exact class of object that will be created", "test3", "test4", "test5", img);
 		Pattern p2 = new Pattern("Adapter", "allows the interface of an existing class to be used from another interface", "test3", "test4", "test5", img);

@@ -4,13 +4,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,7 +22,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JButton addPattern, removePattern;
+	private JButton addPattern, editPattern, removePattern;
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons;
 	private SelectorController control;
 
@@ -105,6 +101,10 @@ public class EditorFrame extends JFrame implements ActionListener {
 		addPattern = new JButton("Add pattern");
 		ps.add(addPattern);
 		addPattern.addActionListener(this);
+		
+		editPattern = new JButton("Save pattern");
+		ps.add(editPattern);
+		editPattern.addActionListener(editPatternAL);
 
 		removePattern = new JButton("Remove pattern");
 		ps.add(removePattern);
@@ -171,23 +171,17 @@ public class EditorFrame extends JFrame implements ActionListener {
 			String sol = tfSol.getText();
 			String cons = tfCons.getText();
 
-			
-			
-			
 			if (!nm.equals("") && !con.equals("") && !prob.equals("")
 					&& !sol.equals("") && !cons.equals("")) {
 
 				newP = new Pattern(nm, con, prob, sol, cons, null);
 				if (control.addPattern(newP)) {
-					JOptionPane.showMessageDialog(null, "Adding succesfull!",
-							"Succes", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Adding succesfull!", "Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
 				}
 
 				else {
-					JOptionPane.showMessageDialog(null,
-							"Denied, pattern already exists!", "Fout",
-							JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Denied, pattern already exists!", "Error", JOptionPane.PLAIN_MESSAGE);
 					tfNm.setText("");
 					tfCon.setText("");
 					tfProb.setText("");
@@ -195,12 +189,39 @@ public class EditorFrame extends JFrame implements ActionListener {
 					tfCons.setText("");
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Toevoegen Mislukt", "OK",
-						JOptionPane.PLAIN_MESSAGE);
-
+				JOptionPane.showMessageDialog(null, "Adding failed", "OK", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 	}
+	
+	ActionListener editPatternAL = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String nm = tfNm.getText();
+			String con = tfCon.getText();
+			String prob = tfProb.getText();
+			String sol = tfSol.getText();
+			String cons = tfCons.getText();
+			
+			Object selectedPattern = box.getSelectedItem();
+			if (selectedPattern instanceof Pattern) {
+				if (!nm.equals("") && !con.equals("") && !prob.equals("") && !sol.equals("") && !cons.equals("")) {
+					Pattern selected = (Pattern) selectedPattern;
+					selected.setName(nm);
+					selected.setConsequence(con);
+					selected.setProblem(prob);
+					selected.setSolution(sol);
+					selected.setConsequence(cons);
+					JOptionPane.showMessageDialog(null, "Pattern saved", "OK", JOptionPane.PLAIN_MESSAGE);
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Saving failed", "OK", JOptionPane.PLAIN_MESSAGE);
+				}
+			}
+		}
+		
+	};
 
 	public SelectorController getControl() {
 		return control;
@@ -213,10 +234,10 @@ public class EditorFrame extends JFrame implements ActionListener {
 	
 	//Action on frame close, wegschrijven naar file???????????????????????????
 	public void windowClosed(WindowEvent wE) {
-		FileWriter fw= null;
-        File file =null;
+		FileWriter fw = null;
+        File file = null;
         try {
-            file=new File("All-Patterns.txt");
+            file = new File("All-Patterns.txt");
             if(!file.exists()) {
                 file.createNewFile();
             }
