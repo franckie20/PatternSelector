@@ -33,7 +33,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		super("Pattern Application");
 		setControl(sc);
 		createGUI();
-		
+		windowOpen();
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -249,6 +249,10 @@ public class EditorFrame extends JFrame implements ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+	}
+	
+	public void windowOpen() {
+		onSelectedItemChanged();
 	}
 	
 }
