@@ -1,5 +1,10 @@
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAttribute;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("pattern")
 public class Pattern implements Serializable  {
 
 	/**
@@ -7,11 +12,17 @@ public class Pattern implements Serializable  {
 	 */
 	private static final long serialVersionUID = 7145052309161516555L;
 	
+	@XmlAttribute
 	private String name;
+	@XmlAttribute
 	private String context;
+	@XmlAttribute
 	private String problem;
+	@XmlAttribute
 	private String solution;
+	@XmlAttribute
 	private String consequence;
+	@XmlAttribute
 	private String diagram;
 	
 	private Purpose hasPurpose;

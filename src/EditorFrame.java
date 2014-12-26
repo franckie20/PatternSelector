@@ -180,17 +180,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 				if (control.addPattern(newP)) {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
-					try {
-						FileOutputStream fos = new FileOutputStream(
-								"pattern.obj");
-						ObjectOutputStream oos = new ObjectOutputStream(fos);
-						oos.writeObject(newP);
-						oos.close();
-					} catch (FileNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
 					this.dispose();
 				}
 
