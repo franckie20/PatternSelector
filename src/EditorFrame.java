@@ -115,7 +115,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		content.add(panel, BorderLayout.CENTER);
 		content.add(pn, BorderLayout.NORTH);
 		content.add(ps, BorderLayout.SOUTH);
-		add(content, BorderLayout.CENTER);
+		getContentPane().add(content, BorderLayout.CENTER);
 
 		setSize(580, 350);
 		setTitle("Edit Pattern");
