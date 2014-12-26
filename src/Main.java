@@ -1,9 +1,3 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-
 import com.thoughtworks.xstream.XStream;
 
 public class Main {

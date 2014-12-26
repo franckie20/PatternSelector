@@ -224,17 +224,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 					selected.setConsequence(cons);
 					JOptionPane.showMessageDialog(null, "Pattern saved", "OK",
 							JOptionPane.PLAIN_MESSAGE);
-					try {
-						FileOutputStream fos = new FileOutputStream(
-								"pattern.obj");
-						ObjectOutputStream oos = new ObjectOutputStream(fos);
-						oos.flush();
-						oos.close();
-					} catch (FileNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Saving failed", "OK",
