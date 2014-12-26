@@ -3,11 +3,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import com.thoughtworks.xstream.XStream;
+
 public class Main {
 
 	public static void main(String[] args) {
 
-		SelectorController sc = SelectorController.getInstance();
+		MainController sc = MainController.getInstance();
+		
+		XStream xstream = new XStream();
+		xstream.alias("Pattern", Pattern.class);
+		xstream.alias("Purpose", Purpose.class);
+		xstream.alias("Scope", Scope.class);
 
 		try {
 
@@ -55,11 +62,12 @@ public class Main {
 		p3.setScope(s1);
 		p4.setScope(s1);
 
-		System.out.println(p1);
-		System.out.println(p2);
-		System.out.println(p3);
-		System.out.println(p4);
-
+		
+		System.out.println(xstream.toXML(p1));
+		System.out.println(xstream.toXML(p2));
+		System.out.println(xstream.toXML(p3));
+		System.out.println(xstream.toXML(p4));
+		
 		new MainFrame(sc);
 
 	}

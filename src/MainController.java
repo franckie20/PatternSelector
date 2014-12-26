@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 
 
-public class SelectorController  {
+public class MainController  {
 	
 	
 	private ArrayList<Pattern> allPatterns = new ArrayList<Pattern>();
 	private ArrayList<Purpose> allPurposes = new ArrayList<Purpose>();
 	
-	private static SelectorController instance = null;
+	private static MainController instance = null;
 	
-	public static synchronized SelectorController getInstance(){
+	public static synchronized MainController getInstance(){
 		if (instance == null){
-			instance = new SelectorController();
+			instance = new MainController();
 		}
 		return instance;
 	}

@@ -18,10 +18,10 @@ public class MainFrame extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
-	private SelectorController control;
+	private MainController control;
 	private JButton selector, editor;
 
-	public MainFrame(SelectorController sc) {
+	public MainFrame(MainController sc) {
 		super("Pattern Application");
 		control = sc;
 		createGUI();

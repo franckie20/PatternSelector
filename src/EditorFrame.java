@@ -24,14 +24,14 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	private JButton addPattern, editPattern, removePattern;
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons;
-	private SelectorController control;
+	private MainController control;
 	
 	String filename = "pattern.obj";
 
 	@SuppressWarnings("rawtypes")
 	private JComboBox box;
 
-	public EditorFrame(SelectorController sc) {
+	public EditorFrame(MainController sc) {
 		super("Pattern Application");
 		setControl(sc);
 		createGUI();
@@ -119,7 +119,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		content.add(ps, BorderLayout.SOUTH);
 		getContentPane().add(content, BorderLayout.CENTER);
 
-		setSize(580, 350);
+		setSize(960, 350);
 		setTitle("Edit Pattern");
 		setLocationRelativeTo(null);
 
@@ -235,6 +235,17 @@ public class EditorFrame extends JFrame implements ActionListener {
 					selected.setConsequence(cons);
 					JOptionPane.showMessageDialog(null, "Pattern saved", "OK",
 							JOptionPane.PLAIN_MESSAGE);
+					try {
+						FileOutputStream fos = new FileOutputStream(
+								"pattern.obj");
+						ObjectOutputStream oos = new ObjectOutputStream(fos);
+						oos.flush();
+						oos.close();
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Saving failed", "OK",
@@ -245,11 +256,11 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	};
 
-	public SelectorController getControl() {
+	public MainController getControl() {
 		return control;
 	}
 
-	public void setControl(SelectorController control) {
+	public void setControl(MainController control) {
 		this.control = control;
 	}
 
