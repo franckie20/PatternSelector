@@ -1,5 +1,7 @@
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -7,7 +9,7 @@ import javax.imageio.ImageIO;
 
 public class Main {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		
 		SelectorController sc = SelectorController.getInstance();
 		
@@ -15,6 +17,21 @@ public class Main {
 
 		try {
 			img = ImageIO.read(new URL("http://www.dofactory.com/images/diagrams/net/factory.gif"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			FileInputStream fis = new FileInputStream("pattern.obj");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Object obj = ois.readObject();
+			Pattern p = (Pattern)obj;
+			ois.close();
+			
+			System.out.println(p);
+			
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

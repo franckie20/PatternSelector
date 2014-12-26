@@ -5,8 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-public class EditorFrame extends JFrame implements ActionListener {
+public class EditorFrame extends JFrame implements ActionListener, Serializable  {
 
 	private static final long serialVersionUID = 1L;
 
@@ -178,6 +182,16 @@ public class EditorFrame extends JFrame implements ActionListener {
 				if (control.addPattern(newP)) {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
+					try {
+						FileOutputStream fos = new FileOutputStream("pattern.obj");
+						ObjectOutputStream oos = new ObjectOutputStream(fos);
+						oos.writeObject(newP);
+						oos.close();
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 					this.dispose();
 				}
 

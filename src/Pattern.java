@@ -1,7 +1,13 @@
 import java.awt.Image;
+import java.io.Serializable;
 
-public class Pattern {
+public class Pattern implements Serializable  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7145052309161516555L;
+	
 	private String name;
 	private String context;
 	private String problem;
