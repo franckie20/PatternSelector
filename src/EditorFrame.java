@@ -7,8 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -145,24 +143,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 		}
 	}
 
-	@SuppressWarnings("unused")
-	private static void writeObjectsToFile(String filename, ArrayList<Pattern> patterns) throws IOException {
-		OutputStream os = null;
-		try {
-			os = new FileOutputStream(filename);
-			@SuppressWarnings("resource")
-			ObjectOutputStream oos = new ObjectOutputStream(os);
-			for (Pattern p : patterns) {
-				oos.writeObject(patterns);
-			}
-			oos.flush();
-		} finally {
-			if (os != null) {
-				os.close();
-			}
-		}
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == box) {
@@ -178,11 +158,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 				control.removePattern(selected);
 				box.repaint();
 				this.dispose();
-				try {
-					writeObjectsToFile(filename, control.getAllPatterns());
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
 			} else {
 				JOptionPane.showMessageDialog(null,
 						"Pattern couldn't be removed!", "Error",
