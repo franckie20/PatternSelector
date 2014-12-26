@@ -87,15 +87,17 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		    URL url = new URL("http://www.online-image-editor.com//styles/2014/images/example_image.png");
 		    image = ImageIO.read(url);
 		} catch (IOException e) {
+			
 		}
 		//***************
 		
 		
+		JPanel content = new JPanel(new BorderLayout());
+		
 		JLabel label = new JLabel(new ImageIcon(image));
-		getContentPane().add(label);
+		content.add(label);
 		setVisible(true);
 		
-		JPanel content = new JPanel(new BorderLayout());
 		content.setBorder(new EmptyBorder(10, 10, 10, 10));
 		content.add(firstPanel, BorderLayout.NORTH);
 		add(content, BorderLayout.CENTER);
