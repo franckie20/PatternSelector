@@ -86,7 +86,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 	// CONTEXT OPHALEN???
 	private void onSelectedItemChanged() {
 		Object context = box1.getSelectedItem();
-		if (context.equals(control.getAllPatterns())) {
+		if (control.getAllPatterns().contains(context)) {
 			System.out.println("Test");
 		} else {
 
