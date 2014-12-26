@@ -107,8 +107,6 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		onSelectedItemChanged();
 	}
 
-
-
 	// CONTEXT OPHALEN???
 	private void onSelectedItemChanged() {
 		Object context = box1.getSelectedItem();
@@ -122,12 +120,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 			}
 		}
 	}
-<<<<<<< HEAD
-		
-=======
 	
-
->>>>>>> origin/master
 	public SelectorController getSelectorController() {
 		return control;
 	}

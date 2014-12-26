@@ -1,4 +1,3 @@
-import java.awt.Image;
 import java.io.Serializable;
 
 public class Pattern implements Serializable  {
