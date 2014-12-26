@@ -28,22 +28,21 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 
 	public void createGUI() {
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 300);
-		
+
 		FlowLayout layout = new FlowLayout();
-		
-		//logo
+
+		// logo
 		Image image = null;
-        try {
-            URL url = new URL("http://www.franckie20.com/images/logo.png");
-            image = ImageIO.read(url);
-        } catch (IOException e) {
-        	e.printStackTrace();
-        }
-        
-				
+		try {
+			URL url = new URL("http://www.franckie20.com/images/logo.png");
+			image = ImageIO.read(url);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(layout);
@@ -52,18 +51,18 @@ public class MainFrame extends JFrame implements ActionListener {
 		selector = new JButton("Selector");
 		selector.addActionListener(selectorAction);
 		contentPane.add(selector);
-		
+
 		editor = new JButton("Editor");
 		editor.addActionListener(editorAction);
 		contentPane.add(editor);
-		
+
 		setSize(460, 300);
 		setTitle("Main Frame");
 		setLocationRelativeTo(null);
-		
+
 		JLabel label = new JLabel(new ImageIcon(image));
-	    getContentPane().add(label);
-	    setVisible(true);
+		getContentPane().add(label);
+		setVisible(true);
 	}
 
 	ActionListener selectorAction = new ActionListener() {
@@ -75,7 +74,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		}
 
 	};
-	
+
 	ActionListener editorAction = new ActionListener() {
 
 		@Override
