@@ -19,7 +19,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private JButton addPattern, editPattern, removePattern;
-	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons;
+	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons, tfDiag;
 	private SoftwarePatterns control;
 	
 	String filename = "pattern.obj";
@@ -91,9 +91,12 @@ public class EditorFrame extends JFrame implements ActionListener {
 		tfCons.setFont(f);
 		panel.add(tfCons);
 
-		JLabel l5 = new JLabel("Diagram: ");
+		JLabel l5 = new JLabel("Diagram (URL): ");
 		l5.setFont(f);
 		panel.add(l5);
+		tfDiag = new JTextField();
+		tfDiag.setFont(f);
+		panel.add(tfDiag);
 
 		JPanel ps = new JPanel();
 		addPattern = new JButton("Add pattern");
@@ -130,12 +133,14 @@ public class EditorFrame extends JFrame implements ActionListener {
 			tfProb.setText(p.getProblem());
 			tfSol.setText(p.getSolution());
 			tfCons.setText(p.getConsequence());
+			tfDiag.setText(p.getDiagram());
 		} else {
 			tfNm.setText("");
 			tfCon.setText("");
 			tfProb.setText("");
 			tfSol.setText("");
 			tfCons.setText("");
+			tfDiag.setText("");
 		}
 	}
 
@@ -168,9 +173,10 @@ public class EditorFrame extends JFrame implements ActionListener {
 			String prob = tfProb.getText();
 			String sol = tfSol.getText();
 			String cons = tfCons.getText();
+			String diag = tfDiag.getText();
 
 			if (!nm.equals("") && !con.equals("") && !prob.equals("")
-					&& !sol.equals("") && !cons.equals("")) {
+					&& !sol.equals("") && !cons.equals("") && !diag.equals("")) {
 
 				newP = new Pattern(nm, con, prob, sol, cons, null);
 				if (control.addPattern(newP)) {
@@ -188,6 +194,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 					tfProb.setText("");
 					tfSol.setText("");
 					tfCons.setText("");
+					tfDiag.setText("");
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Adding failed", "OK",
@@ -206,18 +213,20 @@ public class EditorFrame extends JFrame implements ActionListener {
 			String prob = tfProb.getText();
 			String sol = tfSol.getText();
 			String cons = tfCons.getText();
+			String diag = tfDiag.getText();
 
 			Object selectedPattern = box.getSelectedItem();
 			if (selectedPattern instanceof Pattern) {
 				Pattern selected = (Pattern) selectedPattern;
 				if (!nm.equals("") && !con.equals("") && !prob.equals("")
-						&& !sol.equals("") && !cons.equals("")) {
+						&& !sol.equals("") && !cons.equals("") && !diag.equals("")) {
 
 					selected.setName(nm);
 					selected.setConsequence(con);
 					selected.setProblem(prob);
 					selected.setSolution(sol);
 					selected.setConsequence(cons);
+					selected.setDiagram(diag);
 					JOptionPane.showMessageDialog(null, "Pattern saved", "OK",
 							JOptionPane.PLAIN_MESSAGE);
 

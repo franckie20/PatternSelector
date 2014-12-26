@@ -1,4 +1,3 @@
-import com.thoughtworks.xstream.XStream;
 
 public class Main {
 
@@ -6,11 +5,11 @@ public class Main {
 
 		SoftwarePatterns sc = SoftwarePatterns.getInstance();
 		
-		XStream xstream = new XStream();
+		//XStream xstream = new XStream();
 		
-		xstream.alias("pattern", Pattern.class);
-		xstream.alias("purpose", Purpose.class);
-		xstream.alias("scope", Scope.class);
+		//xstream.alias("pattern", Pattern.class);
+		//xstream.alias("purpose", Purpose.class);
+		//xstream.alias("scope", Scope.class);
 
 		Purpose ps1 = new Purpose("Creational");
 		Purpose ps2 = new Purpose("Structural");
