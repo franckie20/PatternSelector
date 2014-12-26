@@ -57,12 +57,12 @@ public class MainFrame extends JFrame implements ActionListener {
 		editor.addActionListener(editorAction);
 		contentPane.add(editor);
 		
-		setSize(460, 350);
+		setSize(460, 300);
 		setTitle("Main Frame");
 		setLocationRelativeTo(null);
 		
 		JLabel label = new JLabel(new ImageIcon(image));
-	    add(label);
+	    getContentPane().add(label);
 	    setVisible(true);
 	}
 
