@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-public class EditorFrame extends JFrame implements ActionListener, Serializable  {
+public class EditorFrame extends JFrame implements ActionListener, Serializable {
 
 	private static final long serialVersionUID = 1L;
 

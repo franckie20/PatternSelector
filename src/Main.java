@@ -27,10 +27,8 @@ public class Main {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			Object obj = ois.readObject();
 			Pattern p = (Pattern)obj;
+			sc.addPattern(p);
 			ois.close();
-			
-			System.out.println(p);
-			
 			
 		} catch (IOException e) {
 			e.printStackTrace();
