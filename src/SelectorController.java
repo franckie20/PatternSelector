@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class SelectorController {
+public class SelectorController  {
 	
 	
 	private ArrayList<Pattern> allPatterns = new ArrayList<Pattern>();

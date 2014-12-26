@@ -24,7 +24,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 	@SuppressWarnings("unused")
 	private JLabel picture, l1, l2, l2Display, l3, l3Display, l4, l4Display, l5, l5Display, l6, l6Display, PatternPic;
 	private SelectorController control;
-	@SuppressWarnings({ "rawtypes", "unused" })
+	@SuppressWarnings({ "rawtypes"})
 	private JComboBox box1;
 	
 	
@@ -36,7 +36,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 		JPanel firstPanel = new JPanel();
 		firstPanel.setBorder(new TitledBorder("Pattern Selector"));
-		firstPanel.setLayout(new GridLayout(10, 1, 1, 5));
+		firstPanel.setLayout(new GridLayout(6, 1, 1, 5));
 		firstPanel.setSize(200, 100);
 
 		l1 = new JLabel("Context: ");
@@ -122,7 +122,12 @@ public class SelectorFrame extends JFrame implements ActionListener {
 			}
 		}
 	}
+<<<<<<< HEAD
 		
+=======
+	
+
+>>>>>>> origin/master
 	public SelectorController getSelectorController() {
 		return control;
 	}

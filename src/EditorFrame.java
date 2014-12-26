@@ -3,14 +3,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,13 +18,15 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-public class EditorFrame extends JFrame implements ActionListener, Serializable {
+public class EditorFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
 	private JButton addPattern, editPattern, removePattern;
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons;
 	private SelectorController control;
+	
+	String filename = "pattern.obj";
 
 	@SuppressWarnings("rawtypes")
 	private JComboBox box;
@@ -183,7 +181,8 @@ public class EditorFrame extends JFrame implements ActionListener, Serializable 
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					try {
-						FileOutputStream fos = new FileOutputStream("pattern.obj");
+						FileOutputStream fos = new FileOutputStream(
+								"pattern.obj");
 						ObjectOutputStream oos = new ObjectOutputStream(fos);
 						oos.writeObject(newP);
 						oos.close();
@@ -211,6 +210,7 @@ public class EditorFrame extends JFrame implements ActionListener, Serializable 
 			}
 		}
 	}
+	
 
 	ActionListener editPatternAL = new ActionListener() {
 
@@ -251,25 +251,6 @@ public class EditorFrame extends JFrame implements ActionListener, Serializable 
 
 	public void setControl(SelectorController control) {
 		this.control = control;
-	}
-
-	// Action on frame close, wegschrijven naar file???????????????????????????
-	public void windowClosed(WindowEvent wE) {
-		FileWriter fw = null;
-		File file = null;
-		try {
-			file = new File("All-Patterns.txt");
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-			fw = new FileWriter(file);
-			fw.write("");
-			fw.flush();
-			fw.close();
-			System.out.println("File written Succesfully");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void windowOpen() {
