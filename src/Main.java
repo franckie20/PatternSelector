@@ -9,7 +9,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		MainController sc = MainController.getInstance();
+		SoftwarePatterns sc = SoftwarePatterns.getInstance();
 		
 		XStream xstream = new XStream();
 		xstream.alias("Pattern", Pattern.class);

@@ -23,12 +23,12 @@ public class SelectorFrame extends JFrame implements ActionListener {
 	// private JPanel contentPanel;
 	@SuppressWarnings("unused")
 	private JLabel picture, l1, l2, l2Display, l3, l3Display, l4, l4Display, l5, l5Display, l6, l6Display, label, PatternPic;
-	private MainController control;
+	private SoftwarePatterns control;
 	@SuppressWarnings({ "rawtypes"})
 	private JComboBox box1;
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public SelectorFrame(MainController sc) {
+	public SelectorFrame(SoftwarePatterns sc) {
 		super("Pattern Application");
 		control = sc;
 
@@ -127,11 +127,11 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		}
 	}
 	
-	public MainController getSelectorController() {
+	public SoftwarePatterns getSelectorController() {
 		return control;
 	}
 
-	public void setControl(MainController sc) {
+	public void setControl(SoftwarePatterns sc) {
 		control = sc;
 	}
 

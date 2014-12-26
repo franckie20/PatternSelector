@@ -24,14 +24,14 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	private JButton addPattern, editPattern, removePattern;
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons;
-	private MainController control;
+	private SoftwarePatterns control;
 	
 	String filename = "pattern.obj";
 
 	@SuppressWarnings("rawtypes")
 	private JComboBox box;
 
-	public EditorFrame(MainController sc) {
+	public EditorFrame(SoftwarePatterns sc) {
 		super("Pattern Application");
 		setControl(sc);
 		createGUI();
@@ -256,11 +256,11 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	};
 
-	public MainController getControl() {
+	public SoftwarePatterns getControl() {
 		return control;
 	}
 
-	public void setControl(MainController control) {
+	public void setControl(SoftwarePatterns control) {
 		this.control = control;
 	}
 

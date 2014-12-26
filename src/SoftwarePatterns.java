@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 
 
-public class MainController  {
+public class SoftwarePatterns  {
 	
 	
 	private ArrayList<Pattern> allPatterns = new ArrayList<Pattern>();
 	private ArrayList<Purpose> allPurposes = new ArrayList<Purpose>();
 	
-	private static MainController instance = null;
+	private static SoftwarePatterns instance = null;
 	
-	public static synchronized MainController getInstance(){
+	public static synchronized SoftwarePatterns getInstance(){
 		if (instance == null){
-			instance = new MainController();
+			instance = new SoftwarePatterns();
 		}
 		return instance;
 	}
