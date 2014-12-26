@@ -66,11 +66,11 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		firstPanel.add(l6);
 
 		JPanel content = new JPanel(new BorderLayout());
-		content.setBorder(new EmptyBorder(5, 5, 5, 5));
+		content.setBorder(new EmptyBorder(10, 10, 10, 10));
 		content.add(firstPanel, BorderLayout.NORTH);
 		add(content, BorderLayout.CENTER);
 		
-		setSize(460, 300);
+		setSize(560, 360);
 		setTitle("Pattern Selector");
 		setLocationRelativeTo(null);
 	
