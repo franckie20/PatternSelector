@@ -40,12 +40,12 @@ public class Main {
 
 		
 		Scope s1 = new Scope("Class");
-		//Scope s2 = new Scope("Object");
+		Scope s2 = new Scope("Object");
 		
-		Pattern p1 = new Pattern("Factory", "Creating objects without specifying the exact class of object that will be created", "test1", "solution1", "consequence1", img);
-		Pattern p2 = new Pattern("Adapter", "allows the interface of an existing class to be used from another interface", "problem2", "solution2", "consequence2", img);
-		Pattern p3 = new Pattern("Interpreter", "specifies how to evaluate sentences in a language", "problem3", "solution3", "consequence3", img);
-		Pattern p4 = new Pattern("Template", "defines the program skeleton of an algorithm in a method", "problem4", "solution4", "consequence4", img);
+		Pattern p1 = new Pattern("Factory", "Creating objects without specifying the exact class of object that will be created", "test1", "solution1", "consequence1", "http://www.apwebco.com/images/FactoryMethodDetailed.png");
+		Pattern p2 = new Pattern("Adapter", "allows the interface of an existing class to be used from another interface", "Class Adapter: introduces only one object,Adapter override some of Adaptee's behaviour ", "solution2", "consequence2", "http://www.dofactory.com/images/diagrams/net/adapter.gif");
+		Pattern p3 = new Pattern("Interpreter", "specifies how to evaluate sentences in a language", "problem3", "solution3", "consequence3", "http://www.dofactory.com/images/diagrams/net/interpreter.gif");
+		Pattern p4 = new Pattern("Template", "defines the program skeleton of an algorithm in a method", "problem4", "solution4", "consequence4", "http://groovy.codehaus.org/download/attachments/78107/TemplateMethodClasses.gif?version=1&modificationDate=1178589659877&api=v2");
 		
 		sc.addPattern(p1);
 		sc.addPattern(p2);

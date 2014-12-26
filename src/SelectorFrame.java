@@ -1,9 +1,14 @@
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,7 +26,8 @@ public class SelectorFrame extends JFrame implements ActionListener {
 	private SelectorController control;
 	@SuppressWarnings({ "rawtypes", "unused" })
 	private JComboBox box1;
-
+	
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public SelectorFrame(SelectorController sc) {
 		super("Pattern Application");
@@ -74,7 +80,21 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		PatternPic.setFont(f);
 		firstPanel.add(PatternPic);
 		
-
+		
+		//image 
+		Image image = null;
+		try {
+		    URL url = new URL("http://www.online-image-editor.com//styles/2014/images/example_image.png");
+		    image = ImageIO.read(url);
+		} catch (IOException e) {
+		}
+		//***************
+		
+		
+		JLabel label = new JLabel(new ImageIcon(image));
+		getContentPane().add(label);
+		setVisible(true);
+		
 		JPanel content = new JPanel(new BorderLayout());
 		content.setBorder(new EmptyBorder(10, 10, 10, 10));
 		content.add(firstPanel, BorderLayout.NORTH);
@@ -103,11 +123,6 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		}
 	}
 		
-		
-
-	
-	
-
 	public SelectorController getSelectorController() {
 		return control;
 	}
@@ -129,48 +144,3 @@ public class SelectorFrame extends JFrame implements ActionListener {
 
 	}
 }
-
-// Set up the picture.
-/*
- * picture = new JLabel();
- * picture.setFont(picture.getFont().deriveFont(Font.ITALIC));
- * picture.setHorizontalAlignment(JLabel.CENTER);
- * updateLabel(listPatterns[patternList.getSelectedIndex()]);
- * picture.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
- * 
- * // The preferred size is hard-coded to be the width of the // widest image
- * and the height of the tallest image + the border. // A real program would
- * compute this. picture.setPreferredSize(new Dimension(315, 320 + 10));
- * 
- * add(l1, BorderLayout.BEFORE_LINE_BEGINS); //add(l2, BorderLayout.LINE_END);
- * add(patternList, BorderLayout.PAGE_START); add(picture,
- * BorderLayout.PAGE_END); picture.setBorder(BorderFactory.createEmptyBorder(20,
- * 20, 20, 20)); }
- */
-
-/*
- * @Override public void actionPerformed(ActionEvent e) {
- * 
- * @SuppressWarnings("rawtypes") JComboBox cb = (JComboBox) e.getSource();
- * String patternName = (String)cb.getSelectedItem(); updateLabel(patternName);
- * } };
- * 
- * protected void updateLabel(String name) { ImageIcon icon =
- * createImageIcon("images/" + name.toLowerCase() + ".gif");
- * picture.setIcon(icon); picture.setToolTipText("The " + name.toLowerCase() +
- * " pattern"); if (icon != null) { picture.setText(null); } else {
- * picture.setText("Image not found"); } }
- * 
- * 
- * /** Returns an ImageIcon, or null if the path was invalid.
- */
-/*
- * protected static ImageIcon createImageIcon(String path) { BufferedImage img =
- * null; try { img = ImageIO.read(new URL("http://www.franckie20.com/" + path));
- * } catch (MalformedURLException e) { e.printStackTrace(); } catch (IOException
- * e) { e.printStackTrace(); }
- * 
- * if (img != null) { return new ImageIcon(img); } else {
- * System.err.println("Couldn't find file: " + path); return null; } }
- */
-

@@ -13,12 +13,12 @@ public class Pattern implements Serializable  {
 	private String problem;
 	private String solution;
 	private String consequence;
-	private Image diagram;
+	private String diagram;
 	
 	private Purpose hasPurpose;
 	private Scope hasScope;
 
-	public Pattern(String nm, String con, String pro, String sol, String conseq, Image dia) {
+	public Pattern(String nm, String con, String pro, String sol, String conseq, String dia) {
 		name = nm;
 		context = con;
 		problem = pro;
@@ -75,11 +75,11 @@ public class Pattern implements Serializable  {
 		this.solution = solution;
 	}
 
-	public Image getDiagram() {
+	public String getDiagram() {
 		return diagram;
 	}
 
-	public void setDiagram(Image diagram) {
+	public void setDiagram(String diagram) {
 		this.diagram = diagram;
 	}
 
