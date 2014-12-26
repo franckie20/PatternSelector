@@ -30,7 +30,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 		JPanel firstPanel = new JPanel();
 		firstPanel.setBorder(new TitledBorder("Pattern Selector"));
-		firstPanel.setLayout(new GridLayout(10, 1, 1, 5));
+		firstPanel.setLayout(new GridLayout(6, 1, 1, 5));
 		firstPanel.setSize(200, 100);
 
 		l1 = new JLabel("Context: ");
