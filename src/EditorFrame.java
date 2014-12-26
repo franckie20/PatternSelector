@@ -210,6 +210,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 			}
 		}
 	}
+	
 
 	ActionListener editPatternAL = new ActionListener() {
 

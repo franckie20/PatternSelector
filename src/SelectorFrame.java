@@ -102,10 +102,6 @@ public class SelectorFrame extends JFrame implements ActionListener {
 			}
 		}
 	}
-		
-		
-
-	
 	
 
 	public SelectorController getSelectorController() {

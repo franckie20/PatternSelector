@@ -1,7 +1,14 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class SelectorController {
+@SuppressWarnings("serial")
+public class SelectorController implements Serializable {
 	
 	
 	private ArrayList<Pattern> allPatterns = new ArrayList<Pattern>();
@@ -14,6 +21,50 @@ public class SelectorController {
 			instance = new SelectorController();
 		}
 		return instance;
+	}
+	
+	
+	public void savePatternData()
+	{
+	      try
+	      {
+	         FileOutputStream fileOut = new FileOutputStream("pattern.obj");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
+	         out.writeObject(this);
+
+	         out.close();
+	         fileOut.close();
+	      }
+	      catch(IOException i)
+	      {
+	          i.printStackTrace();
+	      }
+	}
+
+	public void loadPatternData()
+	{
+	      try
+	      {
+	         FileInputStream fileIn = new FileInputStream("pattern.obj");
+	         ObjectInputStream in = new ObjectInputStream(fileIn);
+	         Pattern tmp = (Pattern) in.readObject();
+	         
+	         addPattern(tmp);
+
+	         in.close();
+	         fileIn.close();
+	      }
+	      catch(IOException i)
+	      {
+	         i.printStackTrace();
+	         return;
+	      }
+	      catch(ClassNotFoundException c)
+	      {
+	         c.printStackTrace();
+	         return;
+	      }
 	}
 
 	
@@ -66,6 +117,7 @@ public class SelectorController {
 	public boolean addPattern(Pattern nwePattern) {
 		if(!patternExists(nwePattern.getName())) {
 			allPatterns.add(nwePattern);
+			savePatternData();
 			return true;
 		}
 		return false;
@@ -74,6 +126,7 @@ public class SelectorController {
 	public void removePattern(Pattern exPattern) {
 		if(patternExists(exPattern.getName())) {
 			allPatterns.remove(exPattern);
+			savePatternData();
 		}
 	}
 
