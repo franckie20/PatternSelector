@@ -17,10 +17,10 @@ public class SelectorFrame extends JFrame implements ActionListener {
 
 	// private JPanel contentPanel;
 	@SuppressWarnings("unused")
-	private JLabel picture, l1, l2, l3, l4, l5, l6, l8;
+	private JLabel picture, l1, l2, l2Display, l3, l3Display, l4, l4Display, l5, l5Display, l6, l6Display, PatternPic;
 	private SelectorController control;
 	@SuppressWarnings({ "rawtypes", "unused" })
-	private JComboBox box1, box2, box3, box4, box5, box6;
+	private JComboBox box1;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public SelectorFrame(SelectorController sc) {
@@ -30,7 +30,8 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 		JPanel firstPanel = new JPanel();
 		firstPanel.setBorder(new TitledBorder("Pattern Selector"));
-		firstPanel.setLayout(new GridLayout(5, 1, 1, 1));
+		firstPanel.setLayout(new GridLayout(10, 1, 1, 5));
+		firstPanel.setSize(200, 100);
 
 		l1 = new JLabel("Context: ");
 		l1.setFont(f);
@@ -41,57 +42,71 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		box1.addActionListener(contextAction);
 		l2 = new JLabel("Problem: ");
 		l2.setFont(f);
-		firstPanel.add(l2);
-		box2 = new JComboBox();
-		firstPanel.add(box2);
-		box2.addActionListener(this);
+		firstPanel.add(l2);		
+		l2Display = new JLabel(" ");
+		l2Display.setFont(f);
+		firstPanel.add(l2Display);
+		
 		l3 = new JLabel("Solution: ");
 		l3.setFont(f);
 		firstPanel.add(l3);
-		box3 = new JComboBox();
-		firstPanel.add(box3);
-		box3.addActionListener(this);
+		l3Display = new JLabel(" ");
+		l3Display.setFont(f);
+		firstPanel.add(l3Display);
+		
+		
 		l4 = new JLabel("Consequence: ");
 		l4.setFont(f);
 		firstPanel.add(l4);
-		box4 = new JComboBox();
-		firstPanel.add(box4);
-		box4.addActionListener(this);
-		l8 = new JLabel("Pattern: ");
-		l8.setFont(f);
-		firstPanel.add(l8);
-		l6 = new JLabel("Selected Pattern");
+		l4Display = new JLabel(" ");
+		l4Display.setFont(f);
+		firstPanel.add(l4Display);
+		
+		
+		l6 = new JLabel("Pattern: ");
 		l6.setFont(f);
 		firstPanel.add(l6);
+		l6Display = new JLabel(" ");
+		l6Display.setFont(f);
+		firstPanel.add(l6Display);
+		
+		PatternPic = new JLabel ("Picture:");
+		PatternPic.setFont(f);
+		firstPanel.add(PatternPic);
+		
 
 		JPanel content = new JPanel(new BorderLayout());
 		content.setBorder(new EmptyBorder(10, 10, 10, 10));
 		content.add(firstPanel, BorderLayout.NORTH);
 		add(content, BorderLayout.CENTER);
 
-		setSize(560, 360);
+		setSize(760, 360);
 		setTitle("Pattern Selector");
 		setLocationRelativeTo(null);
 
 		onSelectedItemChanged();
 	}
 
-	// String[] listPatterns = control.getAllPatternsByName();
-	// JComboBox<String> patternList = new JComboBox<String>(listPatterns);
 
-	// patternList.setSelectedIndex(1);
-	// patternList.addActionListener(contextAction);
-	// pn.add(patternList);
 
 	// CONTEXT OPHALEN???
 	private void onSelectedItemChanged() {
 		Object context = box1.getSelectedItem();
-		if (control.getAllPatterns().contains(context)) {
-			System.out.println("Test");
-		} else {
-
+		
+		for (Pattern p : control.getAllPatterns()) {
+			if (p.getContext().equals(context)) {
+				l2Display.setText(p.getProblem());
+				l3Display.setText(p.getSolution());
+				l4Display.setText(p.getConsequence());
+				l6Display.setText(p.getName());
+			}
 		}
 	}
+		
+		
+
+	
+	
 
 	public SelectorController getSelectorController() {
 		return control;
