@@ -150,6 +150,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		OutputStream os = null;
 		try {
 			os = new FileOutputStream(filename);
+			@SuppressWarnings("resource")
 			ObjectOutputStream oos = new ObjectOutputStream(os);
 			for (Pattern p : patterns) {
 				oos.writeObject(patterns);
