@@ -33,10 +33,11 @@ public class MainFrame extends JFrame implements ActionListener {
 		setBounds(100, 100, 300, 300);
 		
 		FlowLayout layout = new FlowLayout();
-		//plaatjuhh
+		
+		//logo
 		Image image = null;
         try {
-            URL url = new URL("https://www.fer.unizg.hr/images/50009041/logo.png");
+            URL url = new URL("http://www.franckie20.com/images/logo.png");
             image = ImageIO.read(url);
         } catch (IOException e) {
         	e.printStackTrace();
