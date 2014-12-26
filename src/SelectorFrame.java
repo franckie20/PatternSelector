@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -22,11 +23,10 @@ public class SelectorFrame extends JFrame implements ActionListener {
 
 	// private JPanel contentPanel;
 	@SuppressWarnings("unused")
-	private JLabel picture, l1, l2, l2Display, l3, l3Display, l4, l4Display, l5, l5Display, l6, l6Display, PatternPic;
+	private JLabel picture, l1, l2, l2Display, l3, l3Display, l4, l4Display, l5, l5Display, l6, l6Display, label, PatternPic;
 	private SelectorController control;
 	@SuppressWarnings({ "rawtypes"})
 	private JComboBox box1;
-	
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public SelectorFrame(SelectorController sc) {
@@ -81,20 +81,9 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		firstPanel.add(PatternPic);
 		
 		
-		//image 
-		Image image = null;
-		try {
-		    URL url = new URL("http://www.online-image-editor.com//styles/2014/images/example_image.png");
-		    image = ImageIO.read(url);
-		} catch (IOException e) {
-			
-		}
-		//***************
-		
-		
 		JPanel content = new JPanel(new BorderLayout());
 		
-		JLabel label = new JLabel(new ImageIcon(image));
+		label = new JLabel();
 		content.add(label);
 		setVisible(true);
 		
@@ -119,6 +108,21 @@ public class SelectorFrame extends JFrame implements ActionListener {
 				l3Display.setText(p.getSolution());
 				l4Display.setText(p.getConsequence());
 				l6Display.setText(p.getName());
+				
+				//image 
+				Image img = null;
+				
+				try {
+				    URL url = new URL(p.getDiagram());
+				    img = ImageIO.read(url);
+				    
+				    ImageIcon icon = new ImageIcon(img); 
+				    label.setIcon(icon);
+				    
+				} catch (IOException e) {
+					System.out.println(e);
+				}
+				
 			}
 		}
 	}
