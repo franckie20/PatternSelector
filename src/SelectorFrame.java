@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -119,7 +120,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 				    label.setIcon(icon);
 				    
 				} catch (IOException e) {
-					e.printStackTrace();
+					
 				}
 				
 			}
