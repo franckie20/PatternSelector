@@ -12,8 +12,6 @@ public class Main {
 
 		SoftwarePatterns sc = SoftwarePatterns.getInstance();
 		
-		File xmlFile = new File("test.xml");
-		
 		XStream xstream = new XStream();
 		
 		xstream.alias("pattern", Pattern.class);
