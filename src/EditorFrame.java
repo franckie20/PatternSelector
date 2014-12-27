@@ -4,11 +4,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -22,9 +19,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-
 public class EditorFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -35,8 +29,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 	private JComboBox boxPurpose, boxScope;
 	private JLabel picLabel;
 	private SoftwarePatterns control;
-
-	private XStream xstream = new XStream(new DomDriver());
 
 
 	@SuppressWarnings("rawtypes")
@@ -174,23 +166,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	}
 
-	public void savePatternDataToFile() throws IOException {
-
-		// Convert ObservableList to a normal ArrayList
-		ArrayList<Pattern> patternList = new ArrayList<>(
-				control.getAllPatterns());
-
-		String xml = xstream.toXML(patternList);
-		FileOutputStream fos;
-		try {
-			byte[] bytes = xml.getBytes();
-			fos = new FileOutputStream("test.xml");
-			fos.write(bytes);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
-	}
-
 	private void onSelectedItemChanged() {
 		Object obj = box.getSelectedItem();
 		if (obj instanceof Pattern) {
@@ -276,11 +251,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
-					try {
-						savePatternDataToFile();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
 				}
 
 				else {

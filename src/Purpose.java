@@ -1,8 +1,5 @@
 import javax.xml.bind.annotation.XmlAttribute;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-
-@XStreamAlias("purpose")
 public class Purpose {
 	
 	@XmlAttribute
