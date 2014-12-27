@@ -281,13 +281,14 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 		else if (e.getSource() == addPattern) {
 			Pattern newP = null;
+			Purpose p = (Purpose) boxPurpose.getSelectedItem();
+			Scope s = (Scope) boxScope.getSelectedItem();
 			String nm = tfNm.getText();
 			String con = tfCon.getText();
 			String prob = tfProb.getText();
 			String sol = tfSol.getText();
 			String cons = tfCons.getText();
 			String diag = tfDiag.getText();
-			String purp = boxPurpose.getSelectedItem().toString();
 
 			if (!nm.equals("") && !con.equals("") && !prob.equals("")
 					&& !sol.equals("") && !cons.equals("") && !diag.equals("")) {
@@ -297,7 +298,8 @@ public class EditorFrame extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
-					newP.setPurpose(purp);
+					newP.setPurpose(p);
+					newP.setScope(s);
 					savePattern(newP);
 				}
 
