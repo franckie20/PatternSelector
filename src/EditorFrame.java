@@ -294,12 +294,12 @@ public class EditorFrame extends JFrame implements ActionListener {
 					&& !sol.equals("") && !cons.equals("") && !diag.equals("")) {
 
 				newP = new Pattern(nm, con, prob, sol, cons, diag);
+				newP.setPurpose(p);
+				newP.setScope(s);
 				if (control.addPattern(newP)) {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
-					newP.setPurpose(p);
-					newP.setScope(s);
 					savePattern(newP);
 				}
 
