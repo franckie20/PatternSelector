@@ -1,1 +1,14 @@
-<?xml version="1.0"?>
+<?xml version="1.0"?><Pattern>
+  <name>Best Pattern ever</name>
+  <context>geen</context>
+  <problem>test1geen</problem>
+  <solution>01231</solution>
+  <consequence>tesszzt</consequence>
+  <diagram>http://www.apwebco.com/images/FactoryMethodDetailed.png</diagram>
+  <hasPurpose>
+    <type>Object</type>
+  </hasPurpose>
+  <hasScope>
+    <type>Structural</type>
+  </hasScope>
+</Pattern>
