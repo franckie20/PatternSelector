@@ -50,12 +50,52 @@ public class SoftwarePatterns  {
 		return allPatterns.size();
 	}
 	
-	public void addPurpose(Purpose nwePurpose) {
-		allPurposes.add(nwePurpose);
+	public boolean purposeExists(String pur) {
+		boolean b = false;
+		for (Purpose p : allPurposes) {
+			if (p.getType().equals(pur)) {
+				b = true;
+			}
+		}
+		return b;
+	}
+	
+	public boolean addPurpose(Purpose nwePurpose) {
+		if(!patternExists(nwePurpose.getType())) {
+			allPurposes.add(nwePurpose);
+			return true;
+		}
+		return false;
 	}
 
 	public void removePurpose(Purpose exPurpose) {
-		allPurposes.remove(exPurpose);
+		if(purposeExists(exPurpose.getType())) {
+			allPatterns.remove(exPurpose);
+		}
+	}
+	
+	public boolean scopeExists(String sco) {
+		boolean b = false;
+		for (Scope s : allScopes) {
+			if (s.getType().equals(sco)) {
+				b = true;
+			}
+		}
+		return b;
+	}
+	
+	public boolean addScope(Scope nweScope) {
+		if(!scopeExists(nweScope.getType())) {
+			allScopes.add(nweScope);
+			return true;
+		}
+		return false;
+	}
+
+	public void removeScope(Scope exScope) {
+		if(scopeExists(exScope.getType())) {
+			allScopes.remove(exScope);
+		}
 	}
 
 	public int countedPurposes() {

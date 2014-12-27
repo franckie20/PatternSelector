@@ -16,7 +16,7 @@ public class Main {
 		Purpose ps3 = new Purpose("Behavorial");
 
 		Scope s1 = new Scope("Class");
-		//Scope s2 = new Scope("Object");
+		Scope s2 = new Scope("Object");
 		
 		Pattern p1 = new Pattern("Factory", "Creating objects without specifying the exact class of object that will be created", "test1", "solution1", "consequence1", "http://www.apwebco.com/images/FactoryMethodDetailed.png");
 		Pattern p2 = new Pattern("Adapter", "allows the interface of an existing class to be used from another interface", "Class Adapter: introduces only one object,Adapter override some of Adaptee's behaviour ", "solution2", "consequence2", "http://www.dofactory.com/images/diagrams/net/adapter.gif");
@@ -36,6 +36,9 @@ public class Main {
 		sc.addPurpose(ps1);
 		sc.addPurpose(ps2);
 		sc.addPurpose(ps3);
+		
+		sc.addScope(s1);
+		sc.addScope(s2);
 
 		p1.setScope(s1);
 		p2.setScope(s1);
