@@ -283,6 +283,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 			String sol = tfSol.getText();
 			String cons = tfCons.getText();
 			String diag = tfDiag.getText();
+			
 			Scope scope = new Scope((String)boxScope.getSelectedItem());
 			Purpose purpose = new Purpose((String)boxPurpose.getSelectedItem());
 			
