@@ -4,8 +4,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 
@@ -32,7 +31,9 @@ public class EditorFrame extends JFrame implements ActionListener {
 	private JLabel picLabel;
 	private SoftwarePatterns control;
 	
-	private XStream xstream = null;
+	private XStream xstream = new XStream();
+	
+	String xml;
 
 	@SuppressWarnings("rawtypes")
 	private JComboBox box;
@@ -155,11 +156,29 @@ public class EditorFrame extends JFrame implements ActionListener {
 	}
 
 	
-	public void toXMLFile(Object objTobeXMLTranslated, String fileName ) throws IOException {  
-		FileWriter writer = new FileWriter(fileName);  
-		xstream.toXML(objTobeXMLTranslated, writer);  
-		writer.close();  
-	} 
+	public void savePattern(Pattern p) {
+	    System.out.println("save pattern XML");
+	    FileOutputStream fos = null;
+	    try{            
+	        xml = xstream.toXML(p);
+	        fos = new FileOutputStream("test.xml");
+	        fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8"));
+	        byte[] bytes = xml.getBytes("UTF-8");
+	        fos.write(bytes);
+
+	    }catch (Exception e){
+	        System.err.println("Error in XML Write: " + e.getMessage());
+	    }
+	    finally{
+	        if(fos != null){
+	            try{
+	                fos.close();
+	            }catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
 	
 	
 	private void onSelectedItemChanged() {
@@ -236,16 +255,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
-					
-					File f1 = new File("test.xml");
-					
-					if(f1.exists() && f1.isFile()) {
-						try {
-							toXMLFile(newP, "test.xml");
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
+					savePattern(newP);
 				}
 
 				else {
