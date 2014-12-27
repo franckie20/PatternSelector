@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
@@ -28,7 +29,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 	private JComboBox box1;
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public SelectorFrame(SoftwarePatterns sc) {
+	public SelectorFrame(SoftwarePatterns sc) throws FileNotFoundException {
 		super("Pattern Application");
 		control = sc;
 
@@ -105,6 +106,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		setTitle("Pattern Selector");
 		setLocationRelativeTo(null);
 
+		firstPanel.repaint();
 		onSelectedItemChanged();
 	}
 
@@ -125,14 +127,15 @@ public class SelectorFrame extends JFrame implements ActionListener {
 				Image img = null;
 				
 				try {
-				    URL url = new URL(p.getDiagram());
-				    img = ImageIO.read(url);
-				    
-				    ImageIcon icon = new ImageIcon(img); 
-				    picLabel.setIcon(icon);
-				    
-				} catch (IOException e) {
-					e.printStackTrace();
+					URL imgUrl = new URL(p.getDiagram());
+					img = ImageIO.read(imgUrl);
+
+					ImageIcon icon = new ImageIcon(img);
+					picLabel.setIcon(icon);
+					picLabel.setText("");
+
+				} catch (IOException ex) {
+					picLabel.setText("Image couldn't get loaded!");
 				}
 				
 			}

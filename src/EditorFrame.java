@@ -4,12 +4,9 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -44,7 +41,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 	@SuppressWarnings("rawtypes")
 	private JComboBox box;
 
-	public EditorFrame(SoftwarePatterns sc) {
+	public EditorFrame(SoftwarePatterns sc) throws FileNotFoundException {
 		super("Pattern Application");
 		setControl(sc);
 		createGUI();
@@ -52,9 +49,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void createGUI() {		
-		
-		readPatternFromFile();
+	public void createGUI() throws FileNotFoundException {		
 		
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 
@@ -178,41 +173,26 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	}
 
-	public void writePatternToFile(Pattern p) {
+	public void writePatternToFile(Pattern p) throws IOException {
 	 
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		String jsonRepresentation = gson.toJson(p);
+		FileWriter fw = null;
+		
 		try {
-			//write converted json data to a file named "file.json"
-			Writer writer = new OutputStreamWriter(new FileOutputStream("pattern.json") , "UTF-8");
-			
-			Gson gson = new GsonBuilder().create();
-			gson.toJson(p, writer);
-	 
+
+			fw = new FileWriter("pattern.json", true);
+			fw.write(jsonRepresentation);
+
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} finally {
+			fw.flush();
+			fw.close();
+        }
 	 
 		System.out.println(p);
-	}
-	
-	public void readPatternFromFile() {
-		Gson gson = new Gson();
-		 
-		try {
-	 
-			BufferedReader br = new BufferedReader(new FileReader("pattern.json"));
-	 
-			//convert the json string back to object
-			Pattern p = gson.fromJson(br, Pattern.class);
-			
-			if(p != null) {
-				control.addPattern(p);
-			};
-	 
-			System.out.println(p);
-	 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	private void onSelectedItemChanged() {
@@ -300,7 +280,11 @@ public class EditorFrame extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
-					writePatternToFile(newP);
+					try {
+						writePatternToFile(newP);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 				}
 
 				else {

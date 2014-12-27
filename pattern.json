@@ -1,0 +1,14 @@
+{
+  "name": "test",
+  "context": "test",
+  "problem": "test",
+  "solution": "test",
+  "consequence": "test",
+  "diagram": "test",
+  "hasPurpose": {
+    "type": "Class"
+  },
+  "hasScope": {
+    "type": "Creational"
+  }
+}

@@ -2,6 +2,7 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
@@ -72,8 +73,13 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			SelectorFrame sf = new SelectorFrame(control);
-			sf.setVisible(true);
+			SelectorFrame sf;
+			try {
+				sf = new SelectorFrame(control);
+				sf.setVisible(true);
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
 		}
 
 	};
@@ -82,8 +88,13 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			EditorFrame ef = new EditorFrame(control);
-			ef.setVisible(true);
+			EditorFrame ef;
+			try {
+				ef = new EditorFrame(control);
+				ef.setVisible(true);
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
 		}
 
 	};

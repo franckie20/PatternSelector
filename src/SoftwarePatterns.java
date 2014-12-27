@@ -1,4 +1,11 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 public class SoftwarePatterns  {
@@ -157,5 +164,24 @@ public class SoftwarePatterns  {
 
 	public void setAllScopes(ArrayList<Scope> allScopes) {
 		this.allScopes = allScopes;
+	}
+	
+	public void readPatternFromFile() throws FileNotFoundException {
+		 Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		
+		String fileData = null;
+		try {
+			fileData = new String(Files.readAllBytes(Paths.get("pattern.json")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+     // parse json string to object
+     Pattern p1 = gson.fromJson(fileData, Pattern.class);
+     
+     if(!patternExists(p1.getName())) {
+     	addPattern(p1);
+     }
+     System.out.println(p1);
 	}
 }
