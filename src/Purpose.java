@@ -1,4 +1,12 @@
+import javax.xml.bind.annotation.XmlAttribute;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("purpose")
 public class Purpose {
+	
+	@XmlAttribute
+	private String type;
 	
 	private Pattern hasPattern;
 	
@@ -13,8 +21,6 @@ public class Purpose {
 	public void setPattern(Pattern p) {
 		hasPattern = p;
 	}
-
-	private String type;
 
 	public String getType() {
 		return type;

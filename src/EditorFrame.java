@@ -158,11 +158,13 @@ public class EditorFrame extends JFrame implements ActionListener {
 	}
 
 	
-	public void savePattern(Pattern p) {
-	    System.out.println("save pattern XML");
+	public void savePattern(Pattern p, Purpose pur) {
+		control.addPattern(p);
+	    System.out.println("save pattern XML" + " "+ p + " " + pur);
 	    FileOutputStream fos = null;
 	    try{            
 	        xml = xstream.toXML(p);
+	        xml = xstream.toXML(pur);
 	        fos = new FileOutputStream("test.xml");
 	        fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8"));
 	        byte[] bytes = xml.getBytes("UTF-8");
@@ -254,6 +256,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 		else if (e.getSource() == addPattern) {
 			Pattern newP = null;
+			Purpose purp = null;
 			String nm = tfNm.getText();
 			String con = tfCon.getText();
 			String prob = tfProb.getText();
@@ -264,12 +267,13 @@ public class EditorFrame extends JFrame implements ActionListener {
 			if (!nm.equals("") && !con.equals("") && !prob.equals("")
 					&& !sol.equals("") && !cons.equals("") && !diag.equals("")) {
 
-				newP = new Pattern(nm, con, prob, sol, cons, null);
+				newP = new Pattern(nm, con, prob, sol, cons, diag);
+				purp = new Purpose("Test");
 				if (control.addPattern(newP)) {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
-					savePattern(newP);
+					savePattern(newP, purp);
 				}
 
 				else {
