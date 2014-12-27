@@ -2,7 +2,9 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-@XStreamAlias
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("pattern")
 public class Pattern implements Serializable  {
 
 	/**
