@@ -54,7 +54,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createGUI() {
 
-		readPattern();
+		//readPatterns();
 
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 
@@ -178,22 +178,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	}
 
-	/*
-	 * public void savePattern(Pattern p, Purpose pur) { control.addPattern(p);
-	 * System.out.println("save pattern XML" + " " + p + " " + pur);
-	 * FileOutputStream fos = null; try { xml = xstream.toXML(p); fos = new
-	 * FileOutputStream("test.xml");
-	 * fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8")); byte[] bytes =
-	 * xml.getBytes("UTF-8"); fos.write(bytes);
-	 * 
-	 * } catch (Exception e) { System.err.println("Error in XML Write: " +
-	 * e.getMessage()); } finally { if (fos != null) { try { fos.close(); }
-	 * catch (IOException e) { e.printStackTrace(); } } } }
-	 */
-
 	public void savePatternDataToFile() throws IOException {
-		XStream xstream = new XStream();
-		xstream.alias("pattern", Pattern.class);
 
 		// Convert ObservableList to a normal ArrayList
 		ArrayList<Pattern> patternList = new ArrayList<>(control.getAllPatterns());
@@ -208,21 +193,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 			e1.printStackTrace();
 		}
 
-	}
-
-	public Pattern readPattern() {
-		System.out.println("read person");
-		Pattern p = new Pattern(xml, xml, xml, xml, xml, xml);
-		try {
-			File xmlFile = new File("test.xml");
-			p = (Pattern) xstream.fromXML(xmlFile);
-			if(!control.patternExists(p.getName())) {
-				control.addPattern(p);
-			}
-		} catch (Exception e) {
-			System.err.println("Error in XML Read: " + e.getMessage());
-		}
-		return p;
 	}
 	
 

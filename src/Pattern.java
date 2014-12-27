@@ -108,5 +108,4 @@ public class Pattern implements Serializable  {
 		return s;
 		
 	}
-
 }
