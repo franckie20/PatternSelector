@@ -105,7 +105,6 @@ public class Pattern implements Serializable  {
 	
 	public String toString() {
 		String s = "" + name + " " + "- " + context + " - " + problem + " - " + solution + " - " + consequence + " - " + hasPurpose + " - " + hasScope;
-		return s;
-		
+		return s;	
 	}
 }

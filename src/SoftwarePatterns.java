@@ -61,7 +61,7 @@ public class SoftwarePatterns  {
 	}
 	
 	public boolean addPurpose(Purpose nwePurpose) {
-		if(!patternExists(nwePurpose.getType())) {
+		if(!purposeExists(nwePurpose.getType())) {
 			allPurposes.add(nwePurpose);
 			return true;
 		}

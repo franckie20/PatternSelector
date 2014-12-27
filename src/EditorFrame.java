@@ -4,7 +4,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -54,7 +54,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createGUI() {
 
-		//readPatterns();
+		readPattern();
 
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 
@@ -181,12 +181,13 @@ public class EditorFrame extends JFrame implements ActionListener {
 	public void savePatternDataToFile() throws IOException {
 
 		// Convert ObservableList to a normal ArrayList
-		ArrayList<Pattern> patternList = new ArrayList<>(control.getAllPatterns());
+		ArrayList<Pattern> patternList = new ArrayList<>(
+				control.getAllPatterns());
 
 		xml = xstream.toXML(patternList);
 		FileOutputStream fos;
 		try {
-			byte[] bytes = xml.getBytes(); 
+			byte[] bytes = xml.getBytes();
 			fos = new FileOutputStream("test.xml");
 			fos.write(bytes);
 		} catch (FileNotFoundException e1) {
@@ -194,7 +195,41 @@ public class EditorFrame extends JFrame implements ActionListener {
 		}
 
 	}
-	
+
+	public void readPattern() {
+		
+		System.out.println("read pattern");
+		// Convert ObservableList to a normal ArrayList
+		ArrayList<Pattern> patternList = new ArrayList<>(control.getAllPatterns());
+		
+		Pattern p = new Pattern(xml, xml, xml, xml, xml, xml);
+		
+		Scope s = new Scope(xml);
+		p.setScope(s);
+		
+		Purpose pur = new Purpose(xml);
+		p.setPurpose(pur);
+		
+		String xml = xstream.toXML(p);
+		
+		Pattern newPattern = (Pattern)xstream.fromXML(xml);
+
+		FileInputStream fis;
+		try {
+			byte[] bytes = xml.getBytes();
+			fis = new FileInputStream("test.xml");
+			try {
+				fis.read(bytes);
+				control.addPattern(newPattern);
+				control.addScope(s);
+				control.addPurpose(pur);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+	}
 
 	private void onSelectedItemChanged() {
 		Object obj = box.getSelectedItem();
@@ -215,14 +250,14 @@ public class EditorFrame extends JFrame implements ActionListener {
 			try {
 				URL imgUrl = new URL(p.getDiagram());
 				img = ImageIO.read(imgUrl);
-				
+
 				ImageIcon icon = new ImageIcon(img);
 				picLabel.setIcon(icon);
-				
-				} catch (IOException ex){
-					picLabel.setText("Image couldn't get loaded!");
-				}
+				picLabel.setText("");
 
+			} catch (IOException ex) {
+				picLabel.setText("Image couldn't get loaded!");
+			}
 
 		} else {
 			tfNm.setText("");

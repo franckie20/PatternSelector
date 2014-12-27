@@ -5,12 +5,26 @@
     <problem>Testing1</problem>
     <solution>Testing1</solution>
     <consequence>Testing1</consequence>
-    <diagram>Testing1.png</diagram>
+    <diagram>http://www.franckie20.com/images/factory.gif</diagram>
     <hasPurpose>
       <type>Class</type>
     </hasPurpose>
     <hasScope>
-      <type>Creational</type>
+      <type>Structural</type>
+    </hasScope>
+  </Pattern>
+  <Pattern>
+    <name>Testing2</name>
+    <context>Testing2</context>
+    <problem>Testing2</problem>
+    <solution>Testing2</solution>
+    <consequence>Testing2</consequence>
+    <diagram>http://www.franckie20.com/images/adapter.gif</diagram>
+    <hasPurpose>
+      <type>Class</type>
+    </hasPurpose>
+    <hasScope>
+      <type>Structural</type>
     </hasScope>
   </Pattern>
 </list>
