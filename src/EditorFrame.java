@@ -196,8 +196,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		xstream.alias("pattern", Pattern.class);
 
 		// Convert ObservableList to a normal ArrayList
-		ArrayList<Pattern> patternList = new ArrayList<>(
-				control.getAllPatterns());
+		ArrayList<Pattern> patternList = new ArrayList<>(control.getAllPatterns());
 
 		xml = xstream.toXML(patternList);
 		FileOutputStream fos;
@@ -225,6 +224,20 @@ public class EditorFrame extends JFrame implements ActionListener {
 		}
 		return p;
 	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public void loadPersonDataFromFile(File file) {
+	  XStream xstream = new XStream();
+	  xstream.alias("pattern", Pattern.class);
+
+	  try {
+	    String xml = FileUtil.readFile(file);
+
+	    ArrayList<Pattern> patternList = (ArrayList<Person>) xstream.fromXML(xml);
+	  }
+	
 
 	private void onSelectedItemChanged() {
 		Object obj = box.getSelectedItem();
