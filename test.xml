@@ -1,16 +1,16 @@
 <list>
   <Pattern>
-    <name>Testing2</name>
-    <context>Testing2</context>
-    <problem>Testing2</problem>
-    <solution>Testing2</solution>
-    <consequence>Testing2</consequence>
-    <diagram>Testing2.png</diagram>
+    <name>Testing1</name>
+    <context>Testing1</context>
+    <problem>Testing1</problem>
+    <solution>Testing1</solution>
+    <consequence>Testing1</consequence>
+    <diagram>Testing1.png</diagram>
     <hasPurpose>
-      <type>Object</type>
+      <type>Class</type>
     </hasPurpose>
     <hasScope>
-      <type>Behavorial</type>
+      <type>Creational</type>
     </hasScope>
   </Pattern>
 </list>

@@ -213,15 +213,16 @@ public class EditorFrame extends JFrame implements ActionListener {
 			Image img = null;
 
 			try {
-				URL url = new URL(p.getDiagram());
-				img = ImageIO.read(url);
-
+				URL imgUrl = new URL(p.getDiagram());
+				img = ImageIO.read(imgUrl);
+				
 				ImageIcon icon = new ImageIcon(img);
 				picLabel.setIcon(icon);
+				
+				} catch (IOException ex){
+					picLabel.setText("Image couldn't get loaded!");
+				}
 
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 
 		} else {
 			tfNm.setText("");
