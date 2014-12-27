@@ -41,8 +41,8 @@ public class Pattern implements Serializable  {
 		return hasPurpose.getType();
 	}
 	
-	public void setPurpose(Purpose p) {
-		hasPurpose = p;
+	public void setPurpose(Purpose purp) {
+		hasPurpose = purp;
 	}
 	
 	public String getScope() {

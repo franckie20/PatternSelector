@@ -176,9 +176,9 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	}
 
-	public void savePattern(Pattern p, Purpose pur) {
+	public void savePattern(Pattern p) {
 		control.addPattern(p);
-		System.out.println("save pattern XML" + " " + p + " " + pur);
+		System.out.println("save pattern XML" + " " + p);
 		FileOutputStream fos = null;
 		try {
 			xml = xstream.toXML(p);
@@ -225,11 +225,12 @@ public class EditorFrame extends JFrame implements ActionListener {
 			tfDiag.setText(p.getDiagram());
 			
 			if(p.getPurpose().equals("Creational")) {
-				boxPurpose.setSelectedIndex(0);
+				System.out.println("test");
+				boxPurpose.setSelectedItem(0);
 			} else if (p.getPurpose().equals("Structural")) {
-				boxPurpose.setSelectedIndex(1);
+				boxPurpose.setSelectedItem(1);
 			} else if (p.getPurpose().equals("Behavorial")) {
-				boxPurpose.setSelectedIndex(2);
+				boxPurpose.setSelectedItem(2);
 			}
 
 			// image
@@ -280,24 +281,24 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 		else if (e.getSource() == addPattern) {
 			Pattern newP = null;
-			Purpose purp = null;
 			String nm = tfNm.getText();
 			String con = tfCon.getText();
 			String prob = tfProb.getText();
 			String sol = tfSol.getText();
 			String cons = tfCons.getText();
 			String diag = tfDiag.getText();
+			String purp = boxPurpose.getSelectedItem().toString();
 
 			if (!nm.equals("") && !con.equals("") && !prob.equals("")
 					&& !sol.equals("") && !cons.equals("") && !diag.equals("")) {
 
 				newP = new Pattern(nm, con, prob, sol, cons, diag);
-				purp = new Purpose("Test");
 				if (control.addPattern(newP)) {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
-					savePattern(newP, purp);
+					newP.setPurpose(purp);
+					savePattern(newP);
 				}
 
 				else {
