@@ -22,7 +22,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 
 	// private JPanel contentPanel;
 	@SuppressWarnings("unused")
-	private JLabel picture, l1, l2, l2Display, l3, l3Display, l4, l4Display, l5, l5Display, l6, l6Display, label, PatternPic;
+	private JLabel picture, l1, l2, l2Display, l3, l3Display, l4, l4Display, l5, l5Display, l6, l6Display, picLabel;
 	private SoftwarePatterns control;
 	@SuppressWarnings({ "rawtypes"})
 	private JComboBox box1;
@@ -35,7 +35,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 		JPanel firstPanel = new JPanel();
 		firstPanel.setBorder(new TitledBorder("Pattern Selector"));
-		firstPanel.setLayout(new GridLayout(6, 1, 1, 5));
+		firstPanel.setLayout(new GridLayout(5, 1, 1, 5));
 		firstPanel.setSize(200, 100);
 
 		l1 = new JLabel("Context: ");
@@ -76,22 +76,17 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		l6Display.setFont(f);
 		firstPanel.add(l6Display);
 		
-		PatternPic = new JLabel ("Picture:");
-		PatternPic.setFont(f);
-		firstPanel.add(PatternPic);
-		
-		
 		JPanel content = new JPanel(new BorderLayout());
 		
-		label = new JLabel();
-		content.add(label);
+		picLabel = new JLabel();
+		content.add(picLabel);
 		setVisible(true);
 		
 		content.setBorder(new EmptyBorder(10, 10, 10, 10));
 		content.add(firstPanel, BorderLayout.NORTH);
 		add(content, BorderLayout.CENTER);
 
-		setSize(760, 540);
+		setSize(760, 505);
 		setTitle("Pattern Selector");
 		setLocationRelativeTo(null);
 
@@ -117,7 +112,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 				    img = ImageIO.read(url);
 				    
 				    ImageIcon icon = new ImageIcon(img); 
-				    label.setIcon(icon);
+				    picLabel.setIcon(icon);
 				    
 				} catch (IOException e) {
 					e.printStackTrace();

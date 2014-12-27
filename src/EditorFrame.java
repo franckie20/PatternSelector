@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -19,21 +18,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.BoxLayout;
 
 public class EditorFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
 	private JButton addPattern, editPattern, removePattern;
-	private JLabel picLabel;
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons, tfDiag;
+	private JLabel picLabel;
 	private SoftwarePatterns control;
 
 	@SuppressWarnings("rawtypes")
@@ -63,10 +55,38 @@ public class EditorFrame extends JFrame implements ActionListener {
 		removePattern = new JButton("Remove pattern");
 		ps.add(removePattern);
 		removePattern.addActionListener(this);
+		setVisible(true);
+
+		BorderLayout bl_boxPanel = new BorderLayout();
+		bl_boxPanel.setHgap(5);
+		bl_boxPanel.setVgap(5);
+		JPanel boxPanel = new JPanel(bl_boxPanel);
+		getContentPane().add(boxPanel, BorderLayout.NORTH);
+
+		JPanel pn = new JPanel();
+		boxPanel.add(pn);
+		pn.setLayout(new GridLayout(2, 2, 5, 5));
+
+		JLabel lab2 = new JLabel("Pattern editor: ");
+		lab2.setFont(f);
+		pn.add(lab2);
+
+		// combobox
+		box = new JComboBox(control.getAllPatterns().toArray(new Pattern[0]));
+		pn.add(box);
+		box.addActionListener(this);
+
+		BorderLayout bl_content = new BorderLayout();
+		bl_content.setHgap(5);
+		bl_content.setVgap(5);
+		JPanel content = new JPanel(bl_content);
+		content.add(ps, BorderLayout.SOUTH);
+		getContentPane().add(content, BorderLayout.CENTER);
 
 		JPanel firstPanel = new JPanel();
+		content.add(firstPanel, BorderLayout.NORTH);
 		firstPanel.setBorder(new TitledBorder("Pattern editor"));
-		firstPanel.setLayout(new GridLayout(6, 1, 1, 5));
+		firstPanel.setLayout(new GridLayout(0, 2, 1, 5));
 		firstPanel.setSize(200, 100);
 
 		// labels & textfields
@@ -111,31 +131,18 @@ public class EditorFrame extends JFrame implements ActionListener {
 		tfDiag = new JTextField();
 		tfDiag.setFont(f);
 		firstPanel.add(tfDiag);
-
-		JPanel content = new JPanel(new BorderLayout());
-
-		picLabel = new JLabel();
-		content.add(picLabel, BorderLayout.WEST);
-		setVisible(true);
-
-		JPanel pn = new JPanel();
-		getContentPane().add(pn, BorderLayout.NORTH);
-		pn.setLayout(new GridLayout(2,2,2,2));
-
-		JLabel lab2 = new JLabel("Pattern editor: ");
-		lab2.setFont(f);
-		pn.add(lab2);
-
-		// combobox
-		box = new JComboBox(control.getAllPatterns().toArray(new Pattern[0]));
-		pn.add(box);
-		box.addActionListener(this);
-
+		
 		content.setBorder(new EmptyBorder(10, 10, 10, 10));
-		content.add(firstPanel, BorderLayout.NORTH);
-		getContentPane().add(content, BorderLayout.CENTER);
+		
+		JPanel picPanel = new JPanel();
+		content.add(picPanel, BorderLayout.CENTER);
+		picPanel.setLayout(new BorderLayout(5, 0));
+		boxPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		picLabel = new JLabel();
+		picPanel.add(picLabel);
 
-		setSize(960, 460);
+		setSize(1020, 590);
 		setTitle("Edit Pattern");
 		setLocationRelativeTo(null);
 
