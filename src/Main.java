@@ -34,6 +34,8 @@ public class Main {
 		p4.setPurpose(ps3);
 
 		sc.addPurpose(ps1);
+		sc.addPurpose(ps2);
+		sc.addPurpose(ps3);
 
 		p1.setScope(s1);
 		p2.setScope(s1);
