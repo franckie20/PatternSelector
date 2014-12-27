@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -44,11 +45,12 @@ public class EditorFrame extends JFrame implements ActionListener {
 		setControl(sc);
 		createGUI();
 		windowOpen();
-		readPattern();
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createGUI() {
+		
+		readPattern();
 		
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 
@@ -164,7 +166,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 	    FileOutputStream fos = null;
 	    try{            
 	        xml = xstream.toXML(p);
-	        xml = xstream.toXML(pur);
 	        fos = new FileOutputStream("test.xml");
 	        fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8"));
 	        byte[] bytes = xml.getBytes("UTF-8");
@@ -186,9 +187,10 @@ public class EditorFrame extends JFrame implements ActionListener {
 	
 	public Pattern readPattern() {
 	    System.out.println("read person");
-	    Pattern p = new Pattern(xml, xml, xml, xml, xml, xml);
+	    Pattern p = new Pattern(xml, xml, xml, xml, xml, xml); //if there is an error during deserialization, this is going to be returned, is this what you want?
 	    try{
-	        p = (Pattern) xstream.fromXML("test.xml"); 
+	        File xmlFile = new File("test.xml");
+	        p = (Pattern) xstream.fromXML(xmlFile); 
 	        control.addPattern(p);
 	    }catch(Exception e){
 	        System.err.println("Error in XML Read: " + e.getMessage());

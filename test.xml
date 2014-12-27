@@ -1,4 +1,8 @@
-<?xml version="1.0"?>
-<Purpose>
-  <type>Test</type>
-</Purpose>
+<?xml version="1.0"?><Pattern>
+  <name>Testing</name>
+  <context>Testing</context>
+  <problem>Testing</problem>
+  <solution>Testing</solution>
+  <consequence>Testing</consequence>
+  <diagram>http://www.dofactory.com/images/diagrams/net/interpreter.gif</diagram>
+</Pattern>

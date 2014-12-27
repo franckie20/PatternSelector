@@ -113,5 +113,4 @@ public class SoftwarePatterns  {
 	public void setAllScopes(ArrayList<Scope> allScopes) {
 		this.allScopes = allScopes;
 	}
-
 }
