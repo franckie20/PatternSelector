@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-
+@XStreamAlias
 public class Pattern implements Serializable  {
 
 	/**
