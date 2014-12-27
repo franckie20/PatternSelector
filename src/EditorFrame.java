@@ -4,9 +4,11 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -20,9 +22,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 public class EditorFrame extends JFrame implements ActionListener {
 
@@ -175,24 +174,25 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	public void writePatternToFile(Pattern p) throws IOException {
 	 
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		ObjectOutputStream out;
 
-		String jsonRepresentation = gson.toJson(p);
-		FileWriter fw = null;
-		
-		try {
+        try{
+            File file = new File("pattern.obj");
+            out = new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(p);
 
-			fw = new FileWriter("pattern.json", true);
-			fw.write(jsonRepresentation);
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			fw.flush();
-			fw.close();
+            out.flush();
+            out.close();
+            System.out.println("Object written to file");
+        } catch (FileNotFoundException ex) {
+            System.out.println("Error with specified file") ;
+            ex.printStackTrace();
         }
-	 
-		System.out.println(p);
+        catch (IOException ex) {
+            System.out.println("Error with I/O processes") ;
+            ex.printStackTrace();
+        }    
 	}
 	
 	private void onSelectedItemChanged() {

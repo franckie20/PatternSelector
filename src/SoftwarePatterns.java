@@ -1,34 +1,27 @@
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+public class SoftwarePatterns {
 
-
-public class SoftwarePatterns  {
-	
-	
 	private ArrayList<Pattern> allPatterns = new ArrayList<Pattern>();
 	private ArrayList<Purpose> allPurposes = new ArrayList<Purpose>();
 	private ArrayList<Scope> allScopes = new ArrayList<Scope>();
-	
+
 	private static SoftwarePatterns instance = null;
-	
-	public static synchronized SoftwarePatterns getInstance(){
-		if (instance == null){
+
+	public static synchronized SoftwarePatterns getInstance() {
+		if (instance == null) {
 			instance = new SoftwarePatterns();
 		}
 		return instance;
 	}
 
-	
 	public ArrayList<Pattern> getAllPatterns() {
 		return allPatterns;
 	}
-	
+
 	public boolean patternExists(String pat) {
 		boolean b = false;
 		for (Pattern p : allPatterns) {
@@ -37,10 +30,10 @@ public class SoftwarePatterns  {
 			}
 		}
 		return b;
-	}	
-	
+	}
+
 	public boolean addPattern(Pattern nwePattern) {
-		if(!patternExists(nwePattern.getName())) {
+		if (!patternExists(nwePattern.getName())) {
 			allPatterns.add(nwePattern);
 			return true;
 		}
@@ -48,7 +41,7 @@ public class SoftwarePatterns  {
 	}
 
 	public void removePattern(Pattern exPattern) {
-		if(patternExists(exPattern.getName())) {
+		if (patternExists(exPattern.getName())) {
 			allPatterns.remove(exPattern);
 		}
 	}
@@ -56,7 +49,7 @@ public class SoftwarePatterns  {
 	public int countedPatterns() {
 		return allPatterns.size();
 	}
-	
+
 	public boolean purposeExists(String pur) {
 		boolean b = false;
 		for (Purpose p : allPurposes) {
@@ -66,9 +59,9 @@ public class SoftwarePatterns  {
 		}
 		return b;
 	}
-	
+
 	public boolean addPurpose(Purpose nwePurpose) {
-		if(!purposeExists(nwePurpose.getType())) {
+		if (!purposeExists(nwePurpose.getType())) {
 			allPurposes.add(nwePurpose);
 			return true;
 		}
@@ -76,11 +69,11 @@ public class SoftwarePatterns  {
 	}
 
 	public void removePurpose(Purpose exPurpose) {
-		if(purposeExists(exPurpose.getType())) {
+		if (purposeExists(exPurpose.getType())) {
 			allPatterns.remove(exPurpose);
 		}
 	}
-	
+
 	public boolean scopeExists(String sco) {
 		boolean b = false;
 		for (Scope s : allScopes) {
@@ -90,9 +83,9 @@ public class SoftwarePatterns  {
 		}
 		return b;
 	}
-	
+
 	public boolean addScope(Scope nweScope) {
-		if(!scopeExists(nweScope.getType())) {
+		if (!scopeExists(nweScope.getType())) {
 			allScopes.add(nweScope);
 			return true;
 		}
@@ -100,7 +93,7 @@ public class SoftwarePatterns  {
 	}
 
 	public void removeScope(Scope exScope) {
-		if(scopeExists(exScope.getType())) {
+		if (scopeExists(exScope.getType())) {
 			allScopes.remove(exScope);
 		}
 	}
@@ -108,54 +101,53 @@ public class SoftwarePatterns  {
 	public int countedPurposes() {
 		return allPurposes.size();
 	}
-	
+
 	public String[] getAllPatternsBySearchName(String t) {
 		String[] array = new String[allPatterns.size()];
 		int counter = 0;
-		for(Pattern p : allPatterns) {
-			if(p.getName().equals(t)){
+		for (Pattern p : allPatterns) {
+			if (p.getName().equals(t)) {
 				array[counter] = p.getName();
 				counter++;
 			}
 		}
 		return array;
 	}
-	
+
 	public String[] getAllPatternsByName() {
 		String[] array = new String[allPatterns.size()];
 		int counter = 0;
-		for(Pattern p : allPatterns) {
+		for (Pattern p : allPatterns) {
 			array[counter] = p.getName();
 			counter++;
 		}
 		return array;
 	}
-	
+
 	public String[] getAllPurposesByName() {
 		String[] array = new String[allPurposes.size()];
 		int counter = 0;
-		for(Purpose p : allPurposes) {
+		for (Purpose p : allPurposes) {
 			array[counter] = p.getType();
 			counter++;
 		}
 		return array;
 	}
-	
+
 	public String[] getAllScopesByName() {
 		String[] type = new String[allScopes.size()];
 		int count = 0;
-		for(Scope s : allScopes) {
+		for (Scope s : allScopes) {
 			type[count] = s.getType();
 			count++;
 		}
 		return type;
 	}
-	
-	
+
 	public String[] getAllPatternContexts() {
 		String[] context = new String[allPatterns.size()];
 		int count = 0;
-		for(Pattern p : allPatterns) {
+		for (Pattern p : allPatterns) {
 			context[count] = p.getContext();
 			count++;
 		}
@@ -165,23 +157,19 @@ public class SoftwarePatterns  {
 	public void setAllScopes(ArrayList<Scope> allScopes) {
 		this.allScopes = allScopes;
 	}
-	
-	public void readPatternFromFile() throws FileNotFoundException {
-		 Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		
-		String fileData = null;
-		try {
-			fileData = new String(Files.readAllBytes(Paths.get("pattern.json")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
-     // parse json string to object
-     Pattern p1 = gson.fromJson(fileData, Pattern.class);
-     
-     if(!patternExists(p1.getName())) {
-     	addPattern(p1);
-     }
-     System.out.println(p1);
+	public void readPatternFromFile() throws IOException, ClassNotFoundException {
+		
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("pattern.obj"));
+		Pattern p = (Pattern) ois.readObject();
+		
+		if(p != null) {
+			if(patternExists(p.getName())) {
+				addPattern(p);
+			}
+		}
+		
+		ois.close();
+		  
 	}
 }
