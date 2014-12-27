@@ -33,9 +33,9 @@ public class EditorFrame extends JFrame implements ActionListener {
 	private JComboBox box1, box2;
 	private JLabel picLabel;
 	private SoftwarePatterns control;
-	
+
 	private XStream xstream = new XStream(new DomDriver());
-	
+
 	String xml;
 
 	@SuppressWarnings("rawtypes")
@@ -50,9 +50,9 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createGUI() {
-		
+
 		readPattern();
-		
+
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 
 		JPanel ps = new JPanel();
@@ -98,7 +98,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		JPanel firstPanel = new JPanel();
 		content.add(firstPanel, BorderLayout.NORTH);
 		firstPanel.setBorder(new TitledBorder("Pattern editor"));
-		firstPanel.setLayout(new GridLayout(0, 2, 1, 5));
+		firstPanel.setLayout(new GridLayout(9, 1, 1, 5));
 		firstPanel.setSize(200, 100);
 
 		// labels & textfields
@@ -136,25 +136,19 @@ public class EditorFrame extends JFrame implements ActionListener {
 		tfCons = new JTextField();
 		tfCons.setFont(f);
 		firstPanel.add(tfCons);
-		
-		JLabel l7 = new JLabel("Scope: ");
-		l7.setFont(f);
-		firstPanel.add(l7);
-		tfCons = new JTextField();
-		tfCons.setFont(f);
-		firstPanel.add(tfCons);
-		
-		box1 = new JComboBox(control.getAllScopesByName());
-		firstPanel.add(box1);
-		box1.setSelectedItem(0);
-	
+
 		JLabel l8 = new JLabel("Purpose: ");
 		l8.setFont(f);
 		firstPanel.add(l8);
-		tfCons = new JTextField();
-		tfCons.setFont(f);
-		firstPanel.add(tfCons);
-		
+
+		box1 = new JComboBox(control.getAllScopesByName());
+		firstPanel.add(box1);
+		box1.setSelectedItem(0);
+
+		JLabel l7 = new JLabel("Scope: ");
+		l7.setFont(f);
+		firstPanel.add(l7);
+
 		box2 = new JComboBox(control.getAllPurposesByName());
 		firstPanel.add(box2);
 		box2.setSelectedItem(0);
@@ -165,63 +159,67 @@ public class EditorFrame extends JFrame implements ActionListener {
 		tfDiag = new JTextField();
 		tfDiag.setFont(f);
 		firstPanel.add(tfDiag);
-		
+
 		content.setBorder(new EmptyBorder(10, 10, 10, 10));
-		
+
 		JPanel picPanel = new JPanel();
 		content.add(picPanel, BorderLayout.CENTER);
 		picPanel.setLayout(new BorderLayout(5, 0));
 		boxPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-		
+
 		picLabel = new JLabel();
 		picPanel.add(picLabel);
 
-		setSize(1020, 590);
+		setSize(1020, 750);
 		setTitle("Edit Pattern");
 		setLocationRelativeTo(null);
 
 	}
 
-	
 	public void savePattern(Pattern p, Purpose pur) {
 		control.addPattern(p);
-	    System.out.println("save pattern XML" + " "+ p + " " + pur);
-	    FileOutputStream fos = null;
-	    try{            
-	        xml = xstream.toXML(p);
-	        fos = new FileOutputStream("test.xml");
-	        fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8"));
-	        byte[] bytes = xml.getBytes("UTF-8");
-	        fos.write(bytes);
+		System.out.println("save pattern XML" + " " + p + " " + pur);
+		FileOutputStream fos = null;
+		try {
+			xml = xstream.toXML(p);
+			fos = new FileOutputStream("test.xml");
+			fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8"));
+			byte[] bytes = xml.getBytes("UTF-8");
+			fos.write(bytes);
 
-	    }catch (Exception e){
-	        System.err.println("Error in XML Write: " + e.getMessage());
-	    }
-	    finally{
-	        if(fos != null){
-	            try{
-	                fos.close();
-	            }catch (IOException e) {
-	                e.printStackTrace();
-	            }
-	        }
-	    }
+		} catch (Exception e) {
+			System.err.println("Error in XML Write: " + e.getMessage());
+		} finally {
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
-	
+
 	public Pattern readPattern() {
-	    System.out.println("read person");
-	    Pattern p = new Pattern(xml, xml, xml, xml, xml, xml); //if there is an error during deserialization, this is going to be returned, is this what you want?
-	    try{
-	        File xmlFile = new File("test.xml");
-	        p = (Pattern) xstream.fromXML(xmlFile); 
-	        control.addPattern(p);
-	    }catch(Exception e){
-	        System.err.println("Error in XML Read: " + e.getMessage());
-	    }
-	    return p;
+		System.out.println("read person");
+		Pattern p = new Pattern(xml, xml, xml, xml, xml, xml); // if there is an
+																// error during
+																// deserialization,
+																// this is going
+																// to be
+																// returned, is
+																// this what you
+																// want?
+		try {
+			File xmlFile = new File("test.xml");
+			p = (Pattern) xstream.fromXML(xmlFile);
+			control.addPattern(p);
+		} catch (Exception e) {
+			System.err.println("Error in XML Read: " + e.getMessage());
+		}
+		return p;
 	}
-	
-	
+
 	private void onSelectedItemChanged() {
 		Object obj = box.getSelectedItem();
 		if (obj instanceof Pattern) {
