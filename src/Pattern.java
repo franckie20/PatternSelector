@@ -37,16 +37,16 @@ public class Pattern implements Serializable  {
 		diagram = dia;
 	}
 	
-	public Purpose getPurpose() {
-		return hasPurpose;
+	public String getPurpose() {
+		return hasPurpose.getType();
 	}
 	
 	public void setPurpose(Purpose p) {
 		hasPurpose = p;
 	}
 	
-	public Scope getScope() {
-		return hasScope;
+	public String getScope() {
+		return hasScope.getType();
 	}
 	
 	public void setScope(Scope s) {
