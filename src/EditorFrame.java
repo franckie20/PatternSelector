@@ -4,8 +4,12 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -20,7 +24,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class EditorFrame extends JFrame implements ActionListener {
 
@@ -48,7 +53,9 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createGUI() {		
-
+		
+		readPatternFromFile();
+		
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 
 		JPanel ps = new JPanel();
@@ -172,20 +179,40 @@ public class EditorFrame extends JFrame implements ActionListener {
 	}
 
 	public void writePatternToFile(Pattern p) {
-		ObjectMapper mapper = new ObjectMapper();
-		try
-	      {
-	         mapper.writeValue(new File("pattern.json"), p);
-	      } catch (JsonGenerationException e)
-	      {
-	         e.printStackTrace();
-	      } catch (JsonMappingException e)
-	      {
-	         e.printStackTrace();
-	      } catch (IOException e)
-	      {
-	         e.printStackTrace();
-	      }
+	 
+		try {
+			//write converted json data to a file named "file.json"
+			Writer writer = new OutputStreamWriter(new FileOutputStream("pattern.json") , "UTF-8");
+			
+			Gson gson = new GsonBuilder().create();
+			gson.toJson(p, writer);
+	 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	 
+		System.out.println(p);
+	}
+	
+	public void readPatternFromFile() {
+		Gson gson = new Gson();
+		 
+		try {
+	 
+			BufferedReader br = new BufferedReader(new FileReader("pattern.json"));
+	 
+			//convert the json string back to object
+			Pattern p = gson.fromJson(br, Pattern.class);
+			
+			if(p != null) {
+				control.addPattern(p);
+			};
+	 
+			System.out.println(p);
+	 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void onSelectedItemChanged() {
@@ -273,6 +300,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
+					writePatternToFile(newP);
 				}
 
 				else {
