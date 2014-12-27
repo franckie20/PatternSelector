@@ -4,6 +4,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 
@@ -19,6 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import com.thoughtworks.xstream.XStream;
+
 public class EditorFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -27,6 +31,8 @@ public class EditorFrame extends JFrame implements ActionListener {
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons, tfDiag;
 	private JLabel picLabel;
 	private SoftwarePatterns control;
+	
+	private XStream xstream = null;
 
 	@SuppressWarnings("rawtypes")
 	private JComboBox box;
@@ -148,6 +154,14 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	}
 
+	
+	public void toXMLFile(Object objTobeXMLTranslated, String fileName ) throws IOException {  
+		FileWriter writer = new FileWriter(fileName);  
+		xstream.toXML(objTobeXMLTranslated, writer);  
+		writer.close();  
+	} 
+	
+	
 	private void onSelectedItemChanged() {
 		Object obj = box.getSelectedItem();
 		if (obj instanceof Pattern) {
@@ -222,6 +236,16 @@ public class EditorFrame extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
+					
+					File f1 = new File("test.xml");
+					
+					if(f1.exists() && f1.isFile()) {
+						try {
+							toXMLFile(newP, "test.xml");
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+					}
 				}
 
 				else {
