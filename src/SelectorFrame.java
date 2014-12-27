@@ -120,7 +120,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 				    label.setIcon(icon);
 				    
 				} catch (IOException e) {
-					
+					e.printStackTrace();
 				}
 				
 			}

@@ -21,8 +21,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 	private JButton addPattern, editPattern, removePattern;
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons, tfDiag;
 	private SoftwarePatterns control;
-	
-	String filename = "pattern.obj";
 
 	@SuppressWarnings("rawtypes")
 	private JComboBox box;
@@ -48,7 +46,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder("Add a Pattern"));
-		panel.setLayout(new GridLayout(9, 1, 1, 1));
+		panel.setLayout(new GridLayout(10, 1, 1, 1));
 
 		// combobox
 		box = new JComboBox(control.getAllPatterns().toArray(new Pattern[0]));
@@ -96,8 +94,8 @@ public class EditorFrame extends JFrame implements ActionListener {
 		panel.add(l5);
 		tfDiag = new JTextField();
 		tfDiag.setFont(f);
-		panel.add(tfDiag);
-
+		panel.add(tfDiag);	
+		
 		JPanel ps = new JPanel();
 		addPattern = new JButton("Add pattern");
 		ps.add(addPattern);
@@ -118,7 +116,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		content.add(ps, BorderLayout.SOUTH);
 		getContentPane().add(content, BorderLayout.CENTER);
 
-		setSize(960, 350);
+		setSize(960, 460);
 		setTitle("Edit Pattern");
 		setLocationRelativeTo(null);
 
@@ -134,6 +132,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 			tfSol.setText(p.getSolution());
 			tfCons.setText(p.getConsequence());
 			tfDiag.setText(p.getDiagram());
+			
 		} else {
 			tfNm.setText("");
 			tfCon.setText("");
