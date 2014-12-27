@@ -23,6 +23,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import org.apache.commons.io.FileUtils;
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
@@ -224,19 +226,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 		}
 		return p;
 	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	public void loadPersonDataFromFile(File file) {
-	  XStream xstream = new XStream();
-	  xstream.alias("pattern", Pattern.class);
-
-	  try {
-	    String xml = FileUtil.readFile(file);
-
-	    ArrayList<Pattern> patternList = (ArrayList<Person>) xstream.fromXML(xml);
-	  }
 	
 
 	private void onSelectedItemChanged() {
