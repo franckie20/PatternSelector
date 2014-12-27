@@ -1,9 +1,15 @@
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -13,12 +19,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import java.awt.CardLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.BoxLayout;
 
 public class EditorFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
 	private JButton addPattern, editPattern, removePattern;
+	private JLabel picLabel;
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons, tfDiag;
 	private SoftwarePatterns control;
 
@@ -37,65 +51,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 
-		JPanel pn = new JPanel();
-		pn.setLayout(new GridLayout(2, 2, 2, 2));
-
-		JLabel lab2 = new JLabel("Pattern editor: ");
-		lab2.setFont(f);
-		pn.add(lab2);
-
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder("Add a Pattern"));
-		panel.setLayout(new GridLayout(10, 1, 1, 1));
-
-		// combobox
-		box = new JComboBox(control.getAllPatterns().toArray(new Pattern[0]));
-		pn.add(box);
-		box.addActionListener(this);
-
-		// labels & textfields
-		JLabel l1 = new JLabel("Name: ");
-		l1.setFont(f);
-		panel.add(l1);
-		tfNm = new JTextField();
-		tfNm.setFont(f);
-		panel.add(tfNm);
-
-		JLabel l2 = new JLabel("Context: ");
-		l2.setFont(f);
-		panel.add(l2);
-		tfCon = new JTextField();
-		tfCon.setFont(f);
-		panel.add(tfCon);
-
-		JLabel l3 = new JLabel("Problem: ");
-		l3.setFont(f);
-		panel.add(l3);
-		tfProb = new JTextField();
-		tfProb.setFont(f);
-		panel.add(tfProb);
-
-		JLabel l4 = new JLabel("Solution: ");
-		l4.setFont(f);
-		panel.add(l4);
-		tfSol = new JTextField();
-		tfSol.setFont(f);
-		panel.add(tfSol);
-
-		JLabel l6 = new JLabel("Consequence: ");
-		l6.setFont(f);
-		panel.add(l6);
-		tfCons = new JTextField();
-		tfCons.setFont(f);
-		panel.add(tfCons);
-
-		JLabel l5 = new JLabel("Diagram (URL): ");
-		l5.setFont(f);
-		panel.add(l5);
-		tfDiag = new JTextField();
-		tfDiag.setFont(f);
-		panel.add(tfDiag);	
-		
 		JPanel ps = new JPanel();
 		addPattern = new JButton("Add pattern");
 		ps.add(addPattern);
@@ -109,11 +64,75 @@ public class EditorFrame extends JFrame implements ActionListener {
 		ps.add(removePattern);
 		removePattern.addActionListener(this);
 
+		JPanel firstPanel = new JPanel();
+		firstPanel.setBorder(new TitledBorder("Pattern editor"));
+		firstPanel.setLayout(new GridLayout(6, 1, 1, 5));
+		firstPanel.setSize(200, 100);
+
+		// labels & textfields
+		JLabel l1 = new JLabel("Name: ");
+		l1.setFont(f);
+		firstPanel.add(l1);
+		tfNm = new JTextField();
+		tfNm.setFont(f);
+		firstPanel.add(tfNm);
+
+		JLabel l2 = new JLabel("Context: ");
+		l2.setFont(f);
+		firstPanel.add(l2);
+		tfCon = new JTextField();
+		tfCon.setFont(f);
+		firstPanel.add(tfCon);
+
+		JLabel l3 = new JLabel("Problem: ");
+		l3.setFont(f);
+		firstPanel.add(l3);
+		tfProb = new JTextField();
+		tfProb.setFont(f);
+		firstPanel.add(tfProb);
+
+		JLabel l4 = new JLabel("Solution: ");
+		l4.setFont(f);
+		firstPanel.add(l4);
+		tfSol = new JTextField();
+		tfSol.setFont(f);
+		firstPanel.add(tfSol);
+
+		JLabel l6 = new JLabel("Consequence: ");
+		l6.setFont(f);
+		firstPanel.add(l6);
+		tfCons = new JTextField();
+		tfCons.setFont(f);
+		firstPanel.add(tfCons);
+
+		JLabel l5 = new JLabel("Diagram (URL): ");
+		l5.setFont(f);
+		firstPanel.add(l5);
+		tfDiag = new JTextField();
+		tfDiag.setFont(f);
+		firstPanel.add(tfDiag);
+
 		JPanel content = new JPanel(new BorderLayout());
+
+		picLabel = new JLabel();
+		content.add(picLabel, BorderLayout.WEST);
+		setVisible(true);
+
+		JPanel pn = new JPanel();
+		getContentPane().add(pn, BorderLayout.NORTH);
+		pn.setLayout(new GridLayout(2,2,2,2));
+
+		JLabel lab2 = new JLabel("Pattern editor: ");
+		lab2.setFont(f);
+		pn.add(lab2);
+
+		// combobox
+		box = new JComboBox(control.getAllPatterns().toArray(new Pattern[0]));
+		pn.add(box);
+		box.addActionListener(this);
+
 		content.setBorder(new EmptyBorder(10, 10, 10, 10));
-		content.add(panel, BorderLayout.CENTER);
-		content.add(pn, BorderLayout.NORTH);
-		content.add(ps, BorderLayout.SOUTH);
+		content.add(firstPanel, BorderLayout.NORTH);
 		getContentPane().add(content, BorderLayout.CENTER);
 
 		setSize(960, 460);
@@ -132,7 +151,21 @@ public class EditorFrame extends JFrame implements ActionListener {
 			tfSol.setText(p.getSolution());
 			tfCons.setText(p.getConsequence());
 			tfDiag.setText(p.getDiagram());
-			
+
+			// image
+			Image img = null;
+
+			try {
+				URL url = new URL(p.getDiagram());
+				img = ImageIO.read(url);
+
+				ImageIcon icon = new ImageIcon(img);
+				picLabel.setIcon(icon);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		} else {
 			tfNm.setText("");
 			tfCon.setText("");
@@ -201,7 +234,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 			}
 		}
 	}
-	
 
 	ActionListener editPatternAL = new ActionListener() {
 
@@ -218,7 +250,8 @@ public class EditorFrame extends JFrame implements ActionListener {
 			if (selectedPattern instanceof Pattern) {
 				Pattern selected = (Pattern) selectedPattern;
 				if (!nm.equals("") && !con.equals("") && !prob.equals("")
-						&& !sol.equals("") && !cons.equals("") && !diag.equals("")) {
+						&& !sol.equals("") && !cons.equals("")
+						&& !diag.equals("")) {
 
 					selected.setName(nm);
 					selected.setConsequence(con);
