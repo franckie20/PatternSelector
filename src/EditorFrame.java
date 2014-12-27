@@ -30,6 +30,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	private JButton addPattern, editPattern, removePattern;
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons, tfDiag;
+	private JComboBox box1, box2;
 	private JLabel picLabel;
 	private SoftwarePatterns control;
 	
@@ -135,6 +136,28 @@ public class EditorFrame extends JFrame implements ActionListener {
 		tfCons = new JTextField();
 		tfCons.setFont(f);
 		firstPanel.add(tfCons);
+		
+		JLabel l7 = new JLabel("Scope: ");
+		l7.setFont(f);
+		firstPanel.add(l7);
+		tfCons = new JTextField();
+		tfCons.setFont(f);
+		firstPanel.add(tfCons);
+		
+		box1 = new JComboBox(control.getAllScopesByName());
+		firstPanel.add(box1);
+		box1.setSelectedItem(0);
+	
+		JLabel l8 = new JLabel("Purpose: ");
+		l8.setFont(f);
+		firstPanel.add(l8);
+		tfCons = new JTextField();
+		tfCons.setFont(f);
+		firstPanel.add(tfCons);
+		
+		box2 = new JComboBox(control.getAllPurposesByName());
+		firstPanel.add(box2);
+		box2.setSelectedItem(0);
 
 		JLabel l5 = new JLabel("Diagram (URL): ");
 		l5.setFont(f);

@@ -41,11 +41,12 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		l1 = new JLabel("Context: ");
 		l1.setFont(f);
 		firstPanel.add(l1);
+		
 		box1 = new JComboBox(control.getAllPatternContexts());
-
 		firstPanel.add(box1);
 		box1.addActionListener(contextAction);
 		box1.setSelectedItem(0);
+		
 		l2 = new JLabel("Problem: ");
 		l2.setFont(f);
 		firstPanel.add(l2);		

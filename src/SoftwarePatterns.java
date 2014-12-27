@@ -18,38 +18,6 @@ public class SoftwarePatterns  {
 	}
 
 	
-	public String[] getAllPatternsBySearchName(String t) {
-		String[] array = new String[allPatterns.size()];
-		int counter = 0;
-		for(Pattern p : allPatterns) {
-			if(p.getName().equals(t)){
-				array[counter] = p.getName();
-				counter++;
-			}
-		}
-		return array;
-	}
-	
-	public String[] getAllPatternsByName() {
-		String[] array = new String[allPatterns.size()];
-		int counter = 0;
-		for(Pattern p : allPatterns) {
-			array[counter] = p.getName();
-			counter++;
-		}
-		return array;
-	}
-	
-	public String[] getAllPatternContexts() {
-		String[] context = new String[allPatterns.size()];
-		int count = 0;
-		for(Pattern p : allPatterns) {
-			context[count] = p.getContext();
-			count++;
-		}
-		return context;
-	}
-	
 	public ArrayList<Pattern> getAllPatterns() {
 		return allPatterns;
 	}
@@ -82,16 +50,6 @@ public class SoftwarePatterns  {
 		return allPatterns.size();
 	}
 	
-	public String[] getAllPurposesByName() {
-		String[] array = new String[allPurposes.size()];
-		int counter = 0;
-		for(Purpose p : allPurposes) {
-			array[counter] = p.getType();
-			counter++;
-		}
-		return array;
-	}
-	
 	public void addPurpose(Purpose nwePurpose) {
 		allPurposes.add(nwePurpose);
 	}
@@ -103,12 +61,59 @@ public class SoftwarePatterns  {
 	public int countedPurposes() {
 		return allPurposes.size();
 	}
-
-
-	public ArrayList<Scope> getAllScopes() {
-		return allScopes;
+	
+	public String[] getAllPatternsBySearchName(String t) {
+		String[] array = new String[allPatterns.size()];
+		int counter = 0;
+		for(Pattern p : allPatterns) {
+			if(p.getName().equals(t)){
+				array[counter] = p.getName();
+				counter++;
+			}
+		}
+		return array;
 	}
-
+	
+	public String[] getAllPatternsByName() {
+		String[] array = new String[allPatterns.size()];
+		int counter = 0;
+		for(Pattern p : allPatterns) {
+			array[counter] = p.getName();
+			counter++;
+		}
+		return array;
+	}
+	
+	public String[] getAllPurposesByName() {
+		String[] array = new String[allPurposes.size()];
+		int counter = 0;
+		for(Purpose p : allPurposes) {
+			array[counter] = p.getType();
+			counter++;
+		}
+		return array;
+	}
+	
+	public String[] getAllScopesByName() {
+		String[] type = new String[allScopes.size()];
+		int count = 0;
+		for(Scope s : allScopes) {
+			type[count] = s.getType();
+			count++;
+		}
+		return type;
+	}
+	
+	
+	public String[] getAllPatternContexts() {
+		String[] context = new String[allPatterns.size()];
+		int count = 0;
+		for(Pattern p : allPatterns) {
+			context[count] = p.getContext();
+			count++;
+		}
+		return context;
+	}
 
 	public void setAllScopes(ArrayList<Scope> allScopes) {
 		this.allScopes = allScopes;
