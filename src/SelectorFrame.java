@@ -98,7 +98,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		onSelectedItemChanged();
 	}
 
-	// CONTEXT OPHALEN???
+	// CONTEXT OPHALEN
 	private void onSelectedItemChanged() {
 		Object context = box1.getSelectedItem();
 		
