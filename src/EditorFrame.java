@@ -5,9 +5,11 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -49,7 +51,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		windowOpen();
 	}
 
- 	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createGUI() {
 
 		readPattern();
@@ -176,28 +178,37 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	}
 
-	public void savePattern(Pattern p, Purpose pur) {
-		control.addPattern(p);
-		System.out.println("save pattern XML" + " " + p + " " + pur);
-		FileOutputStream fos = null;
-		try {
-			xml = xstream.toXML(p);
-			fos = new FileOutputStream("test.xml");
-			fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8"));
-			byte[] bytes = xml.getBytes("UTF-8");
-			fos.write(bytes);
+	/*
+	 * public void savePattern(Pattern p, Purpose pur) { control.addPattern(p);
+	 * System.out.println("save pattern XML" + " " + p + " " + pur);
+	 * FileOutputStream fos = null; try { xml = xstream.toXML(p); fos = new
+	 * FileOutputStream("test.xml");
+	 * fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8")); byte[] bytes =
+	 * xml.getBytes("UTF-8"); fos.write(bytes);
+	 * 
+	 * } catch (Exception e) { System.err.println("Error in XML Write: " +
+	 * e.getMessage()); } finally { if (fos != null) { try { fos.close(); }
+	 * catch (IOException e) { e.printStackTrace(); } } } }
+	 */
 
-		} catch (Exception e) {
-			System.err.println("Error in XML Write: " + e.getMessage());
-		} finally {
-			if (fos != null) {
-				try {
-					fos.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+	public void savePatternDataToFile() throws IOException {
+		XStream xstream = new XStream();
+		xstream.alias("pattern", Pattern.class);
+
+		// Convert ObservableList to a normal ArrayList
+		ArrayList<Pattern> patternList = new ArrayList<>(
+				control.getAllPatterns());
+
+		xml = xstream.toXML(patternList);
+		FileOutputStream fos;
+		try {
+			byte[] bytes = xml.getBytes(); 
+			fos = new FileOutputStream("test.xml");
+			fos.write(bytes);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
 		}
+
 	}
 
 	public Pattern readPattern() {
@@ -206,7 +217,9 @@ public class EditorFrame extends JFrame implements ActionListener {
 		try {
 			File xmlFile = new File("test.xml");
 			p = (Pattern) xstream.fromXML(xmlFile);
-			control.addPattern(p);
+			if(!control.patternExists(p.getName())) {
+				control.addPattern(p);
+			}
 		} catch (Exception e) {
 			System.err.println("Error in XML Read: " + e.getMessage());
 		}
@@ -225,7 +238,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 			tfDiag.setText(p.getDiagram());
 			boxScope.setSelectedItem(p.getScope());
 			boxPurpose.setSelectedItem(p.getPurpose());
-			
+
 			// image
 			Image img = null;
 
@@ -276,32 +289,32 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 		else if (e.getSource() == addPattern) {
 			Pattern newP = null;
-			Purpose purp = null;
 			String nm = tfNm.getText();
 			String con = tfCon.getText();
 			String prob = tfProb.getText();
 			String sol = tfSol.getText();
 			String cons = tfCons.getText();
 			String diag = tfDiag.getText();
-			
-			Scope scope = new Scope((String)boxScope.getSelectedItem());
-			Purpose purpose = new Purpose((String)boxPurpose.getSelectedItem());
-			
+
+			Scope scope = new Scope((String) boxScope.getSelectedItem());
+			Purpose purpose = new Purpose((String) boxPurpose.getSelectedItem());
+
 			if (!nm.equals("") && !con.equals("") && !prob.equals("")
 					&& !sol.equals("") && !cons.equals("") && !diag.equals("")) {
 
 				newP = new Pattern(nm, con, prob, sol, cons, diag);
 				newP.setScope(scope);
 				newP.setPurpose(purpose);
-				
-			
-				
-				
+
 				if (control.addPattern(newP)) {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
-					savePattern(newP, purp);
+					try {
+						savePatternDataToFile();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 				}
 
 				else {
