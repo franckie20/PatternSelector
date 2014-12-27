@@ -44,12 +44,11 @@ public class EditorFrame extends JFrame implements ActionListener {
 		setControl(sc);
 		createGUI();
 		windowOpen();
+		readPattern();
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createGUI() {
-
-		readPattern();
 		
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 
