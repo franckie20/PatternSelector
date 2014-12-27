@@ -6,6 +6,7 @@ public class SoftwarePatterns  {
 	
 	private ArrayList<Pattern> allPatterns = new ArrayList<Pattern>();
 	private ArrayList<Purpose> allPurposes = new ArrayList<Purpose>();
+	private ArrayList<Scope> allScopes = new ArrayList<Scope>();
 	
 	private static SoftwarePatterns instance = null;
 	
@@ -101,6 +102,16 @@ public class SoftwarePatterns  {
 
 	public int countedPurposes() {
 		return allPurposes.size();
+	}
+
+
+	public ArrayList<Scope> getAllScopes() {
+		return allScopes;
+	}
+
+
+	public void setAllScopes(ArrayList<Scope> allScopes) {
+		this.allScopes = allScopes;
 	}
 
 }

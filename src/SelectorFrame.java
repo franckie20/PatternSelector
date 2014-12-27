@@ -22,7 +22,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 
 	// private JPanel contentPanel;
 	@SuppressWarnings("unused")
-	private JLabel picture, l1, l2, l2Display, l3, l3Display, l4, l4Display, l5, l5Display, l6, l6Display, picLabel;
+	private JLabel picture, l1, l2, l2Display, l3, l3Display, l4, l4Display, l5, l5Display, l6, l6Display, picLabel, l7, l7Display, l8, l8Display;
 	private SoftwarePatterns control;
 	@SuppressWarnings({ "rawtypes"})
 	private JComboBox box1;
@@ -35,7 +35,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 		JPanel firstPanel = new JPanel();
 		firstPanel.setBorder(new TitledBorder("Pattern Selector"));
-		firstPanel.setLayout(new GridLayout(5, 1, 1, 5));
+		firstPanel.setLayout(new GridLayout(8, 1, 1, 5));
 		firstPanel.setSize(200, 100);
 
 		l1 = new JLabel("Context: ");
@@ -69,6 +69,20 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		firstPanel.add(l4Display);
 		
 		
+		l7 = new JLabel("Purpose: ");
+		l7.setFont(f);
+		firstPanel.add(l7);
+		l7Display = new JLabel(" ");
+		l7Display.setFont(f);
+		firstPanel.add(l7Display);
+		
+		l8 = new JLabel("Scope: ");
+		l8.setFont(f);
+		firstPanel.add(l8);
+		l8Display = new JLabel(" ");
+		l8Display.setFont(f);
+		firstPanel.add(l8Display);
+		
 		l6 = new JLabel("Pattern: ");
 		l6.setFont(f);
 		firstPanel.add(l6);
@@ -86,7 +100,7 @@ public class SelectorFrame extends JFrame implements ActionListener {
 		content.add(firstPanel, BorderLayout.NORTH);
 		add(content, BorderLayout.CENTER);
 
-		setSize(760, 505);
+		setSize(760, 665);
 		setTitle("Pattern Selector");
 		setLocationRelativeTo(null);
 
@@ -103,6 +117,8 @@ public class SelectorFrame extends JFrame implements ActionListener {
 				l3Display.setText(p.getSolution());
 				l4Display.setText(p.getConsequence());
 				l6Display.setText(p.getName());
+			//	l7Display.setText(p.getPurpose());
+			//	l8Display.setText(p.getScope());
 				
 				//image 
 				Image img = null;
