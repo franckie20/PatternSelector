@@ -49,7 +49,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		windowOpen();
 	}
 
- 	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createGUI() {
 
 		readPattern();
@@ -223,9 +223,15 @@ public class EditorFrame extends JFrame implements ActionListener {
 			tfSol.setText(p.getSolution());
 			tfCons.setText(p.getConsequence());
 			tfDiag.setText(p.getDiagram());
-			boxScope.setSelectedItem(p.getScope());
-			boxPurpose.setSelectedItem(p.getPurpose());
 			
+			if(p.getPurpose().equals("Creational")) {
+				boxPurpose.setSelectedIndex(0);
+			} else if (p.getPurpose().equals("Structural")) {
+				boxPurpose.setSelectedIndex(1);
+			} else if (p.getPurpose().equals("Behavorial")) {
+				boxPurpose.setSelectedIndex(2);
+			}
+
 			// image
 			Image img = null;
 
@@ -247,8 +253,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 			tfSol.setText("");
 			tfCons.setText("");
 			tfDiag.setText("");
-			boxScope.setSelectedItem("");
-			boxPurpose.setSelectedItem("");
 		}
 	}
 
@@ -283,19 +287,12 @@ public class EditorFrame extends JFrame implements ActionListener {
 			String sol = tfSol.getText();
 			String cons = tfCons.getText();
 			String diag = tfDiag.getText();
-			Scope scope = new Scope((String)boxScope.getSelectedItem());
-			Purpose purpose = new Purpose((String)boxPurpose.getSelectedItem());
-			
+
 			if (!nm.equals("") && !con.equals("") && !prob.equals("")
 					&& !sol.equals("") && !cons.equals("") && !diag.equals("")) {
 
 				newP = new Pattern(nm, con, prob, sol, cons, diag);
-				newP.setScope(scope);
-				newP.setPurpose(purpose);
-				
-			
-				
-				
+				purp = new Purpose("Test");
 				if (control.addPattern(newP)) {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
@@ -313,8 +310,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 					tfSol.setText("");
 					tfCons.setText("");
 					tfDiag.setText("");
-					boxScope.setSelectedItem("");
-					boxPurpose.setSelectedItem("");
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Adding failed", "OK",
