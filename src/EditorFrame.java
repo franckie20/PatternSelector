@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -19,14 +20,18 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
 public class EditorFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
 	private JButton addPattern, editPattern, removePattern;
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons, tfDiag;
+	
 	@SuppressWarnings("rawtypes")
 	private JComboBox boxPurpose, boxScope;
+	
 	private JLabel picLabel;
 	private SoftwarePatterns control;
 
@@ -166,6 +171,23 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	}
 
+	public void writePatternToFile(Pattern p) {
+		ObjectMapper mapper = new ObjectMapper();
+		try
+	      {
+	         mapper.writeValue(new File("pattern.json"), p);
+	      } catch (JsonGenerationException e)
+	      {
+	         e.printStackTrace();
+	      } catch (JsonMappingException e)
+	      {
+	         e.printStackTrace();
+	      } catch (IOException e)
+	      {
+	         e.printStackTrace();
+	      }
+	}
+	
 	private void onSelectedItemChanged() {
 		Object obj = box.getSelectedItem();
 		if (obj instanceof Pattern) {
