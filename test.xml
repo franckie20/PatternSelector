@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<Pattern>
+  <name>Factorya</name>
+  <context>Creating objects without specifying the exact class of object that will be created</context>
+  <problem>test1</problem>
+  <solution>solution1</solution>
+  <consequence>consequence1</consequence>
+</Pattern>

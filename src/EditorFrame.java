@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class EditorFrame extends JFrame implements ActionListener {
 
@@ -31,7 +32,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 	private JLabel picLabel;
 	private SoftwarePatterns control;
 	
-	private XStream xstream = new XStream();
+	private XStream xstream = new XStream(new DomDriver());
 	
 	String xml;
 
@@ -48,6 +49,8 @@ public class EditorFrame extends JFrame implements ActionListener {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createGUI() {
 
+		readPattern();
+		
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 
 		JPanel ps = new JPanel();
@@ -178,6 +181,18 @@ public class EditorFrame extends JFrame implements ActionListener {
 	            }
 	        }
 	    }
+	}
+	
+	public Pattern readPattern() {
+	    System.out.println("read person");
+	    Pattern p = new Pattern(xml, xml, xml, xml, xml, xml);
+	    try{
+	        p = (Pattern) xstream.fromXML("test.xml"); 
+	        control.addPattern(p);
+	    }catch(Exception e){
+	        System.err.println("Error in XML Read: " + e.getMessage());
+	    }
+	    return p;
 	}
 	
 	
