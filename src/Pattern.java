@@ -25,7 +25,9 @@ public class Pattern implements Serializable  {
 	@XmlAttribute
 	private String diagram;
 	
+	@XmlAttribute
 	private Purpose hasPurpose;
+	@XmlAttribute
 	private Scope hasScope;
 
 	public Pattern(String nm, String con, String pro, String sol, String conseq, String dia) {

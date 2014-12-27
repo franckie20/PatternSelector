@@ -1,1 +1,15 @@
 <?xml version="1.0"?>
+<Pattern>
+  <name>Testing2</name>
+  <context>Testing2</context>
+  <problem>Testing2</problem>
+  <solution>Testing2</solution>
+  <consequence>Testing2</consequence>
+  <diagram>http://www.dofactory.com/images/diagrams/net/interpreter.gif</diagram>
+  <hasPurpose>
+    <type>Object</type>
+  </hasPurpose>
+  <hasScope>
+    <type>Behavorial</type>
+  </hasScope>
+</Pattern>
