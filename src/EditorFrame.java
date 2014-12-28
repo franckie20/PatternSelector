@@ -42,6 +42,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		setControl(sc);
 		createGUI();
 		windowOpen();
+		onSelectedItemChanged();
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

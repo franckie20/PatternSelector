@@ -1,2 +1,2 @@
-Factory, creational pattern which uses factory methods to deal with the problem of creating objects without specifying the exact class, Testje4, Testje4, Testje4, Testje4, Class, Creational
-HUH, Testje1, HUH, HUH, HUH, HUH, Class, Behavorial
+Adapter, allows the interface of an existing class to be used from another interface, class Adapter: introduces only one object adapter override some of Adaptee's behaviour, solution2, consequence2, http://www.franckie20.com/images/adapter.gif, Behavorial, Class
+Factory, Creating objects without specifying the exact class of object that will be created, The need to specify the exact class when creating objects, factory solution, factory consequence, http://www.franckie20.com/images/factory.gif, Creational, Class
