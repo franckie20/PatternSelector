@@ -1,0 +1,3 @@
+Test, Test, Test, Test, Test, Test, Class, Creational
+Testje, Testje, Testje, Testje, Testje, Testje, Structural, Class
+Testje22, Testje22, Testje22, Testje22, Testje22, Testje22, Creational, Class

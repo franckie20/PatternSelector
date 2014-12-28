@@ -276,7 +276,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
 					try {
-						control.patternToFile(newP);
+						control.patternToFile();
 					} catch (Throwable e1) {
 						e1.printStackTrace();
 					}

@@ -1,10 +1,10 @@
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SoftwarePatterns {
 
@@ -161,37 +161,48 @@ public class SoftwarePatterns {
 		this.allScopes = allScopes;
 	}
 
-	public void patternToFile(Pattern p) throws Throwable {
-		Pattern fileP = new Pattern();
-		fileP.setConsequence(p.getConsequence());
-		fileP.setName(p.getName());
-		fileP.setProblem(p.getProblem());
-		fileP.setContext(p.getContext());
-		fileP.setSolution(p.getSolution());
-		fileP.setDiagram(p.getDiagram());
-		fileP.setPurpose(p.getPurpose());
-		fileP.setScope(p.getScope());
-		
-		try {
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("pattern.bin", true));
-			os.writeObject(fileP);
-			os.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void patternToFile() throws Throwable {
+		FileWriter fw = new FileWriter("patterns.txt");
+		PrintWriter pw = new PrintWriter(fw);
+		for (Pattern p : allPatterns) {
+			pw.println(p.getName() + ", " + p.getContext() + ", "
+					+ p.getProblem() + ", " + p.getSolution() + ", "
+					+ p.getConsequence() + ", " + p.getDiagram() + ", "
+					+ p.getScope() + ", " + p.getPurpose());
 		}
-		System.out.println("Done writing!");
+		pw.close();
 	}
-	
-	public void readAllPatternsFromFile() throws IOException, ClassNotFoundException {
-		try {
-			ObjectInputStream is = new ObjectInputStream(new FileInputStream("pattern.bin"));
-			Pattern p = (Pattern) is.readObject();
+
+	public void readAllPatternsFromFile() throws IOException,
+			ClassNotFoundException {
+		FileReader fr = new FileReader("patterns.txt");
+		BufferedReader br = new BufferedReader(fr);
+		while (true) {
+			String regel = br.readLine();
+			if (regel == null) {
+				break;
+			}
+			Scanner sc = new Scanner(regel);
+			sc.useDelimiter("\\s*,\\s*");
+			String nm = sc.next();
+			String con = sc.next();
+			String prob = sc.next();
+			String sol = sc.next();
+			String cons = sc.next();
+			String diag = sc.next();
+			Scope scope = new Scope((String) sc.next());
+			Purpose purpose = new Purpose((String) sc.next());
+			
+			Pattern p = new Pattern(nm, con, prob, sol, cons, diag);
+			p.setPurpose(purpose);
+			p.setScope(scope);
 			addPattern(p);
-			is.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			sc.close();
+		}
+
+		br.close();
+		for (Pattern p : allPatterns) {
+			System.out.println(p);
 		}
 	}
 }
