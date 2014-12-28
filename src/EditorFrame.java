@@ -170,26 +170,6 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	}
 
-	/*
-	 * public void writePatternToFile(Pattern p) throws IOException {
-	 * 
-	 * List<Pattern> list = new ArrayList<Pattern>(); list.add(p);
-	 * 
-	 * Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	 * java.lang.reflect.Type type = new TypeToken<List<Pattern>>()
-	 * {}.getType(); String json = gson.toJson(list, type);
-	 * 
-	 * try { FileWriter writer = new FileWriter("pattern.json", true);
-	 * writer.write(json); writer.close();
-	 * 
-	 * } catch (IOException e1) { e1.printStackTrace(); }
-	 * 
-	 * System.out.println(json); List<Pattern> fromJson = gson.fromJson(json,
-	 * type);
-	 * 
-	 * for (Pattern pat : fromJson) { System.out.println(pat); } }
-	 */
-
 	private void onSelectedItemChanged() {
 		Object obj = box.getSelectedItem();
 		if (obj instanceof Pattern) {
