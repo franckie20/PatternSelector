@@ -1,2 +1,2 @@
-Testje4, Testje4, Testje4, Testje4, Testje4, Testje4, Class, Creational
+Factory, creational pattern which uses factory methods to deal with the problem of creating objects without specifying the exact class, Testje4, Testje4, Testje4, Testje4, Class, Creational
 HUH, Testje1, HUH, HUH, HUH, HUH, Class, Behavorial

@@ -164,7 +164,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 		picLabel = new JLabel();
 		picPanel.add(picLabel);
 
-		setSize(1020, 750);
+		setSize(1520, 750);
 		setTitle("Edit Pattern");
 		setLocationRelativeTo(null);
 
