@@ -1,12 +1,5 @@
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 public class SoftwarePatterns {
 
@@ -164,20 +157,6 @@ public class SoftwarePatterns {
 	}
 
 	public void readPatternFromFile() throws FileNotFoundException {
-		Gson gson = new Gson();
-		 
-		try {
-	 
-			BufferedReader br = new BufferedReader(new FileReader("pattern.json"));
-	 
-			//convert the json string back to object
-			Type type = new TypeToken<ArrayList<Pattern>>(){}.getType();
-			ArrayList<Pattern> allPatterns = gson.fromJson(br, type);
-	 
-			System.out.println(allPatterns);
-	 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
 }
