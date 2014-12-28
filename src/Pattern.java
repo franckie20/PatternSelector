@@ -95,7 +95,7 @@ public class Pattern implements Serializable  {
 	}
 	
 	public String toString() {
-		String s = name;
+		String s = name + ", " + hasPurpose + ", " + hasScope;
 		return s;	
 	}
 }
