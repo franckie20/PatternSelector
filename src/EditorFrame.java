@@ -225,6 +225,11 @@ public class EditorFrame extends JFrame implements ActionListener {
 				control.removePattern(selected);
 				box.repaint();
 				this.dispose();
+				try {
+					control.patternToFile();
+				} catch (Throwable e1) {
+					e1.printStackTrace();
+				}
 			} else {
 				JOptionPane.showMessageDialog(null,
 						"Pattern couldn't be removed!", "Error",
@@ -301,13 +306,20 @@ public class EditorFrame extends JFrame implements ActionListener {
 						&& !diag.equals("")) {
 
 					selected.setName(nm);
-					selected.setConsequence(con);
+					selected.setContext(con);
 					selected.setProblem(prob);
 					selected.setSolution(sol);
 					selected.setConsequence(cons);
 					selected.setDiagram(diag);
 					JOptionPane.showMessageDialog(null, "Pattern saved", "OK",
 							JOptionPane.PLAIN_MESSAGE);
+					control.removePattern(selected);
+					control.addPattern(selected);
+					try {
+						control.patternToFile();
+					} catch (Throwable e1) {
+						e1.printStackTrace();
+					}
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Saving failed", "OK",

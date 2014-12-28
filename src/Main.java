@@ -1,4 +1,5 @@
 
+
 public class Main {
 	public static void main(String[] args) throws Throwable {
 		
@@ -19,11 +20,6 @@ public class Main {
 		
 		sc.addScope(s1);
 		sc.addScope(s2);	
-		
-		Pattern p1 = new Pattern("Test", "Test", "Test", "Test", "Test", "Test");
-		p1.setScope(s1);
-		p1.setPurpose(ps1);
-		sc.addPattern(p1);
 
 		new MainFrame(sc);
 

@@ -172,10 +172,6 @@ public class SoftwarePatterns {
 		}
 		pw.close();
 	}
-	
-	public void removeLineFromFile() {
-		
-	}
 
 	public void readAllPatternsFromFile() throws IOException,
 			ClassNotFoundException {
@@ -196,7 +192,7 @@ public class SoftwarePatterns {
 			String diag = sc.next();
 			Purpose purpose = new Purpose((String) sc.next());
 			Scope scope = new Scope((String) sc.next());
-			
+
 			Pattern p = new Pattern(nm, con, prob, sol, cons, diag);
 			p.setScope(scope);
 			p.setPurpose(purpose);

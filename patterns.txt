@@ -1,4 +1,2 @@
-Test, Test, Test, Test, Test, Test, Creational, Class
-Testje, Testje, Testje, Testje, Testje, Testje, Structural, Class
-Testje22, Testje22, Testje22, Testje22, Testje22, Testje22, Creational, Class
-Piet, Piet, Piet, Piet, Piet, Piet, Structural, Class
+Testje4, Testje4, Testje4, Testje4, Testje4, Testje4, Class, Creational
+HUH, Testje1, HUH, HUH, HUH, HUH, Class, Behavorial
