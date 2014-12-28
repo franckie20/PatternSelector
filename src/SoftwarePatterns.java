@@ -1,7 +1,12 @@
-import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class SoftwarePatterns {
 
@@ -158,18 +163,21 @@ public class SoftwarePatterns {
 		this.allScopes = allScopes;
 	}
 
-	public void readPatternFromFile() throws IOException, ClassNotFoundException {
-		
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("pattern.obj"));
-		Pattern p = (Pattern) ois.readObject();
-		
-		if(p != null) {
-			if(patternExists(p.getName())) {
-				addPattern(p);
-			}
+	public void readPatternFromFile() throws FileNotFoundException {
+		Gson gson = new Gson();
+		 
+		try {
+	 
+			BufferedReader br = new BufferedReader(new FileReader("pattern.json"));
+	 
+			//convert the json string back to object
+			Type type = new TypeToken<ArrayList<Pattern>>(){}.getType();
+			ArrayList<Pattern> allPatterns = gson.fromJson(br, type);
+	 
+			System.out.println(allPatterns);
+	 
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-		ois.close();
-		  
 	}
 }

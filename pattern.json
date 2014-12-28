@@ -1,14 +1,31 @@
-{
-  "name": "test",
-  "context": "test",
-  "problem": "test",
-  "solution": "test",
-  "consequence": "test",
-  "diagram": "test",
-  "hasPurpose": {
-    "type": "Class"
-  },
-  "hasScope": {
-    "type": "Creational"
+[
+  {
+    "name": "test",
+    "context": "test",
+    "problem": "test",
+    "solution": "test",
+    "consequence": "test",
+    "diagram": "test",
+    "hasPurpose": {
+      "type": "Class"
+    },
+    "hasScope": {
+      "type": "Creational"
+    }
   }
-}
+][
+  {
+    "name": "test2",
+    "context": "test2",
+    "problem": "test2",
+    "solution": "test2",
+    "consequence": "test2",
+    "diagram": "test2",
+    "hasPurpose": {
+      "type": "Class"
+    },
+    "hasScope": {
+      "type": "Creational"
+    }
+  }
+]

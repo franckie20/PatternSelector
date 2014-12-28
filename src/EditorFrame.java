@@ -4,12 +4,12 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -22,6 +22,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 public class EditorFrame extends JFrame implements ActionListener {
 
@@ -174,25 +178,28 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	public void writePatternToFile(Pattern p) throws IOException {
 	 
-		ObjectOutputStream out;
-
-        try{
-            File file = new File("pattern.obj");
-            out = new ObjectOutputStream(new FileOutputStream(file));
-            out.writeObject(p);
-
-
-            out.flush();
-            out.close();
-            System.out.println("Object written to file");
-        } catch (FileNotFoundException ex) {
-            System.out.println("Error with specified file") ;
-            ex.printStackTrace();
-        }
-        catch (IOException ex) {
-            System.out.println("Error with I/O processes") ;
-            ex.printStackTrace();
-        }    
+		List<Pattern> list = new ArrayList<Pattern>(); 
+	    list.add(p);
+	    
+	    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	    java.lang.reflect.Type type = new TypeToken<List<Pattern>>() {}.getType();
+	    String json = gson.toJson(list, type);
+	    
+	    try {
+			FileWriter writer = new FileWriter("pattern.json", true);
+			writer.write(json);
+			writer.close();
+	 
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	    
+	    System.out.println(json);
+	    List<Pattern> fromJson = gson.fromJson(json, type);
+	    
+	    for (Pattern pat : fromJson) {
+	      System.out.println(pat);
+	    }
 	}
 	
 	private void onSelectedItemChanged() {
