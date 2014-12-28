@@ -17,6 +17,10 @@ public class Pattern implements Serializable  {
 	private Purpose hasPurpose;
 	private Scope hasScope;
 
+	public Pattern() {
+		
+	}
+	
 	public Pattern(String nm, String con, String pro, String sol, String conseq, String dia) {
 		name = nm;
 		context = con;
@@ -26,16 +30,16 @@ public class Pattern implements Serializable  {
 		diagram = dia;
 	}
 	
-	public String getPurpose() {
-		return hasPurpose.getType();
+	public Purpose getPurpose() {
+		return hasPurpose;
 	}
 	
 	public void setPurpose(Purpose p) {
 		hasPurpose = p;
 	}
 	
-	public String getScope() {
-		return hasScope.getType();
+	public Scope getScope() {
+		return hasScope;
 	}
 	
 	public void setScope(Scope s) {

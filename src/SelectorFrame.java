@@ -120,8 +120,8 @@ public class SelectorFrame extends JFrame implements ActionListener {
 				l3Display.setText(p.getSolution());
 				l4Display.setText(p.getConsequence());
 				l6Display.setText(p.getName());
-				l7Display.setText(p.getPurpose());
-				l8Display.setText(p.getScope());
+				l7Display.setText(p.getPurpose().getType());
+				l8Display.setText(p.getScope().getType());
 				
 				//image 
 				Image img = null;

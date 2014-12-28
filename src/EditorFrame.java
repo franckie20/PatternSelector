@@ -46,7 +46,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createGUI() throws FileNotFoundException {
-
+		
 		control.getAllPatterns();
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 
@@ -276,7 +276,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
 					try {
-						control.patternToFile();
+						control.patternToFile(newP);
 					} catch (Throwable e1) {
 						e1.printStackTrace();
 					}

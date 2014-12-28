@@ -1,11 +1,9 @@
-import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 
 public class SoftwarePatterns {
@@ -163,38 +161,37 @@ public class SoftwarePatterns {
 		this.allScopes = allScopes;
 	}
 
-	public void patternToFile() throws Throwable {
-		ObjectOutputStream oos = null;
-		FileOutputStream fout = null;
+	public void patternToFile(Pattern p) throws Throwable {
+		Pattern fileP = new Pattern();
+		fileP.setConsequence(p.getConsequence());
+		fileP.setName(p.getName());
+		fileP.setProblem(p.getProblem());
+		fileP.setContext(p.getContext());
+		fileP.setSolution(p.getSolution());
+		fileP.setDiagram(p.getDiagram());
+		fileP.setPurpose(p.getPurpose());
+		fileP.setScope(p.getScope());
+		
 		try {
-			fout = new FileOutputStream("pattern.ser", true);
-			oos = new ObjectOutputStream(fout);
-			oos.writeObject(allPatterns);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (oos != null) {
-				oos.close();
-			}
+			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("pattern.bin", true));
+			os.writeObject(fileP);
+			os.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		;
+		System.out.println("Done writing!");
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void readAllPatternsFromFile() throws IOException, ClassNotFoundException {
-	    int objectCount = 0;
-
-	    FileInputStream fis = new FileInputStream("pattern.ser");
-	    ObjectInputStream objectIn = new ObjectInputStream(fis);
-
-	    // Read from the stream until we hit the end
-	    while (objectCount < 35) {
-	      allPatterns = (ArrayList<Pattern>) objectIn.readObject();
-	      objectCount++;
-	      System.out.println(allPatterns);
-	    }
-
-	    objectIn.close();
-	    fis.close();
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream("pattern.bin"));
+			Pattern p = (Pattern) is.readObject();
+			addPattern(p);
+			is.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }
