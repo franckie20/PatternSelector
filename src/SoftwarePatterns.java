@@ -168,7 +168,7 @@ public class SoftwarePatterns {
 			pw.println(p.getName() + ", " + p.getContext() + ", "
 					+ p.getProblem() + ", " + p.getSolution() + ", "
 					+ p.getConsequence() + ", " + p.getDiagram() + ", "
-					+ p.getScope() + ", " + p.getPurpose());
+					+ p.getPurpose() + ", " + p.getScope());
 		}
 		pw.close();
 	}
@@ -194,8 +194,8 @@ public class SoftwarePatterns {
 			String sol = sc.next();
 			String cons = sc.next();
 			String diag = sc.next();
-			Scope scope = new Scope((String) sc.next());
 			Purpose purpose = new Purpose((String) sc.next());
+			Scope scope = new Scope((String) sc.next());
 			
 			Pattern p = new Pattern(nm, con, prob, sol, cons, diag);
 			p.setScope(scope);
