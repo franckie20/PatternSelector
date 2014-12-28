@@ -1,4 +1,11 @@
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 
 public class SoftwarePatterns {
@@ -156,7 +163,38 @@ public class SoftwarePatterns {
 		this.allScopes = allScopes;
 	}
 
-	public void readPatternFromFile() throws FileNotFoundException {
+	public void patternToFile() throws Throwable {
+		ObjectOutputStream oos = null;
+		FileOutputStream fout = null;
+		try {
+			fout = new FileOutputStream("pattern.ser", true);
+			oos = new ObjectOutputStream(fout);
+			oos.writeObject(allPatterns);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			if (oos != null) {
+				oos.close();
+			}
+		}
+		;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void readAllPatternsFromFile() throws IOException, ClassNotFoundException {
+	    int objectCount = 0;
 
+	    FileInputStream fis = new FileInputStream("pattern.ser");
+	    ObjectInputStream objectIn = new ObjectInputStream(fis);
+
+	    // Read from the stream until we hit the end
+	    while (objectCount < 35) {
+	      allPatterns = (ArrayList<Pattern>) objectIn.readObject();
+	      objectCount++;
+	      System.out.println(allPatterns);
+	    }
+
+	    objectIn.close();
+	    fis.close();
 	}
 }

@@ -13,7 +13,7 @@ public class Pattern implements Serializable  {
 	private String solution;
 	private String consequence;
 	private String diagram;
-	
+
 	private Purpose hasPurpose;
 	private Scope hasScope;
 

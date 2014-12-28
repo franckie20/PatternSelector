@@ -2,6 +2,7 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -44,9 +45,6 @@ public class MainFrame extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		
-		
-
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(layout);
@@ -92,7 +90,7 @@ public class MainFrame extends JFrame implements ActionListener {
 			try {
 				ef = new EditorFrame(control);
 				ef.setVisible(true);
-			} catch (FileNotFoundException e1) {
+			} catch (FileNotFoundException | EOFException e1) {
 				e1.printStackTrace();
 			}
 		}

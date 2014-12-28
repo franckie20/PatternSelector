@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -26,18 +27,17 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	private JButton addPattern, editPattern, removePattern;
 	private JTextField tfNm, tfCon, tfProb, tfSol, tfCons, tfDiag;
-	
+
 	@SuppressWarnings("rawtypes")
 	private JComboBox boxPurpose, boxScope;
-	
+
 	private JLabel picLabel;
 	private SoftwarePatterns control;
-
 
 	@SuppressWarnings("rawtypes")
 	private JComboBox box;
 
-	public EditorFrame(SoftwarePatterns sc) throws FileNotFoundException {
+	public EditorFrame(SoftwarePatterns sc) throws EOFException, FileNotFoundException {
 		super("Pattern Application");
 		setControl(sc);
 		createGUI();
@@ -45,8 +45,9 @@ public class EditorFrame extends JFrame implements ActionListener {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void createGUI() throws FileNotFoundException {		
-		
+	public void createGUI() throws FileNotFoundException {
+
+		control.getAllPatterns();
 		Font f = new Font("SansSerif", Font.BOLD, 12);
 
 		JPanel ps = new JPanel();
@@ -169,35 +170,26 @@ public class EditorFrame extends JFrame implements ActionListener {
 
 	}
 
-	
-	 /* 
-	  	public void writePatternToFile(Pattern p) throws IOException {
-	 
-		List<Pattern> list = new ArrayList<Pattern>(); 
-	    list.add(p);
-	    
-	    Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	    java.lang.reflect.Type type = new TypeToken<List<Pattern>>() {}.getType();
-	    String json = gson.toJson(list, type);
-	    
-	    try {
-			FileWriter writer = new FileWriter("pattern.json", true);
-			writer.write(json);
-			writer.close();
-	 
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-	    
-	    System.out.println(json);
-	    List<Pattern> fromJson = gson.fromJson(json, type);
-	    
-	    for (Pattern pat : fromJson) {
-	      System.out.println(pat);
-	    }
-	}
-	*/
-	
+	/*
+	 * public void writePatternToFile(Pattern p) throws IOException {
+	 * 
+	 * List<Pattern> list = new ArrayList<Pattern>(); list.add(p);
+	 * 
+	 * Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	 * java.lang.reflect.Type type = new TypeToken<List<Pattern>>()
+	 * {}.getType(); String json = gson.toJson(list, type);
+	 * 
+	 * try { FileWriter writer = new FileWriter("pattern.json", true);
+	 * writer.write(json); writer.close();
+	 * 
+	 * } catch (IOException e1) { e1.printStackTrace(); }
+	 * 
+	 * System.out.println(json); List<Pattern> fromJson = gson.fromJson(json,
+	 * type);
+	 * 
+	 * for (Pattern pat : fromJson) { System.out.println(pat); } }
+	 */
+
 	private void onSelectedItemChanged() {
 		Object obj = box.getSelectedItem();
 		if (obj instanceof Pattern) {
@@ -283,7 +275,11 @@ public class EditorFrame extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
-					
+					try {
+						control.patternToFile();
+					} catch (Throwable e1) {
+						e1.printStackTrace();
+					}
 				}
 
 				else {

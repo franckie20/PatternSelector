@@ -1,8 +1,10 @@
-import javax.xml.bind.annotation.XmlAttribute;
+import java.io.Serializable;
 
-public class Purpose {
+
+public class Purpose implements Serializable {
 	
-	@XmlAttribute
+	private static final long serialVersionUID = 713077749286702637L;
+
 	private String type;
 	
 	private Pattern hasPattern;
