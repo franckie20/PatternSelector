@@ -5,12 +5,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -23,11 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.reflect.TypeToken;
 
 public class EditorFrame extends JFrame implements ActionListener {
 
@@ -292,12 +283,7 @@ public class EditorFrame extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Adding succesfull!",
 							"Succes", JOptionPane.PLAIN_MESSAGE);
 					this.dispose();
-					JsonArray users = new JsonArray();
-					users.add(new User(123,"foo1", "secret1"));
-					users.add(new User(124,"foo2", "secret2"));
-					users.add(new User(125,"\"foo2\"", "secret2"));
-					StringWriter out = new StringWriter();
-					  System.out.println(out.toString());
+					
 				}
 
 				else {

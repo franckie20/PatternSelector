@@ -157,6 +157,6 @@ public class SoftwarePatterns {
 	}
 
 	public void readPatternFromFile() throws FileNotFoundException {
-		
+
 	}
 }
